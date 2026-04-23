@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 643.27 174.66">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #6067af;
+      }
+
+      .cls-2 {
+        fill: #6057a5;
+      }
+
+      .cls-3 {
+        font-family: Inter-Medium, Inter;
+        font-size: 36px;
+        font-variation-settings: 'opsz' 14, 'wght' 500;
+        font-weight: 500;
+      }
+
+      .cls-3, .cls-4, .cls-5 {
+        fill: #234b8a;
+      }
+
+      .cls-4 {
+        font-family: PlusJakartaSans-ExtraBold, 'Plus Jakarta Sans';
+        font-size: 80.32px;
+        font-variation-settings: 'wght' 800;
+        font-weight: 700;
+      }
+
+      .cls-6 {
+        fill: #24bcd0;
+      }
+
+      .cls-7 {
+        letter-spacing: 0em;
+      }
+
+      .cls-8 {
+        letter-spacing: 0em;
+      }
+
+      .cls-9 {
+        letter-spacing: .01em;
+      }
+    </style>
+  </defs>
+  <g>
+    <circle class="cls-2" cx="22.78" cy="22.78" r="22.78"/>
+    <polygon class="cls-2" points="35.52 89.3 10.03 107.35 10.03 40.16 35.52 40.16 35.52 89.3"/>
+  </g>
+  <circle class="cls-1" cx="141.43" cy="28.2" r="21.16"/>
+  <rect class="cls-5" x="82.48" y="105.49" width="57.53" height="19.75" transform="translate(61.92 -37.12) rotate(26.03)"/>
+  <polygon class="cls-1" points="145.86 37.16 10.25 139.97 10.25 111.11 134.59 17.19 145.86 37.16"/>
+  <text class="cls-4" transform="translate(199.21 99.15)"><tspan x="0" y="0">kanon</tspan><tspan class="cls-7" x="242.39" y="0">k</tspan><tspan x="288.65" y="0">ode</tspan></text>
+  <text class="cls-3" transform="translate(267.91 150.56)"><tspan x="0" y="0">L</tspan><tspan class="cls-8" x="20.36" y="0">e</tspan><tspan x="41.85" y="0">a</tspan><tspan class="cls-9" x="62.3" y="0">r</tspan><tspan x="76.68" y="0">n.Build.Ea</tspan><tspan class="cls-9" x="248.01" y="0">r</tspan><tspan x="262.39" y="0">n</tspan></text>
+  <circle class="cls-6" cx="137.34" cy="128.77" r="20.13"/>
+  <polygon class="cls-5" points="108.72 99.15 10.03 174.66 10.12 144.66 95.04 80.33 108.72 99.15"/>
+  <circle class="cls-1" cx="106.99" cy="91.31" r="17.55"/>
+</svg>

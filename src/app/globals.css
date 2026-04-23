@@ -1,26 +1,166 @@
-@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,700&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Primary - Indigo */
+  --indigo-main: #4F46E5;
+  --indigo-hover: #4338CA;
+  --indigo-light: #6366F1;
+
+  /* Base - White & Soft Neutrals */
+  --white: #FFFFFF;
+  --bg-soft: #F8FAFC;
+  --bg-tinted: #EEF2FF;
+
+  /* Dark - Depth */
+  --dark-hero: #0F172A;
+  --dark-card: #1E293B;
+
+  /* Accent - Teal (CTAs only, <10% usage) */
+  --teal-main: #14B8A6;
+  --teal-hover: #0D9488;
+  --teal-soft: #5EEAD4;
+
+  /* Text System */
+  --text-primary: #0F172A;
+  --text-secondary: #475569;
+  --text-sub: #94A3B8;
+
+  /* Typography */
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body);
+  background-color: var(--white);
+  color: var(--text-primary);
+  overflow-x: hidden;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-soft); }
+::-webkit-scrollbar-thumb { background: var(--indigo-light); border-radius: 3px; }
+
+/* Hide default cursor when custom cursor is active */
+body.custom-cursor-active * { cursor: none !important; }
+
+@keyframes float1 {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes float2 {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes float3 {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-5px); }
+}
+
+@keyframes cartBounce {
+  0%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-4px); }
+  60% { transform: translateY(-2px); }
+}
+
+.cart-icon-bounce:hover .cart-icon {
+  animation: cartBounce 0.4s ease;
+}
+
+@keyframes communityGradient {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Smooth scroll snap for testimonial carousel */
+.scroll-snap-start { scroll-snap-align: start; }
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-none::-webkit-scrollbar { display: none; }
+
+/* Selection color */
+::selection {
+  background: rgba(79, 70, 229, 0.2);
+  color: #0F172A;
+}
+
+/* Focus visible ring - accessibility */
+:focus-visible {
+  outline: 2px solid #4F46E5;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Smooth image loading */
+img {
+  transition: opacity 0.3s ease;
+}
+
+/* Section transition helper */
+.section-fade {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+/* Hero -> ScrollingBanner transition */
+/* The scrolling banner sits directly below the dark hero.
+   Add a matching dark bg to banner for seamless join.
+   Already handled via bg-dark-hero on ScrollingBanner - no change needed. */
+
+/* Hero video performance */
+video {
+  will-change: transform;
+}
+
+/* Stat number counter animation */
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.stat-number {
+  animation: countUp 0.5s ease forwards;
+}
+
+@keyframes kenBurns {
+  0% { transform: scale(1.0); }
+  100% { transform: scale(1.08); }
+}
+
+.live-video-bg {
+  animation: kenBurns 8s ease-in-out infinite alternate;
+}
+
+@keyframes livePulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.live-dot {
+  animation: livePulse 1.5s ease-in-out infinite;
+}
+
+@keyframes cardsScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
