@@ -1,133 +1,247 @@
 'use client'
 
-import { ArrowRight, BellRing, CheckCircle2, Users } from 'lucide-react'
-import { useEffect, useRef, useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
+import { ArrowRight, CheckCircle2, Users, Zap, Star } from 'lucide-react'
 import { gsap } from '@/lib/gsap-init'
+import { ScrollTrigger } from '@/lib/gsap-init'
 
 export default function CommunitySection() {
-  const sectionRef = useRef<HTMLElement | null>(null)
   const [email, setEmail] = useState('')
-  const [success, setSuccess] = useState(false)
+  const [joined, setJoined] = useState(false)
+  const sectionRef = useRef<HTMLElement>(null)
+  const stat1Ref = useRef<HTMLSpanElement>(null)
+  const stat2Ref = useRef<HTMLSpanElement>(null)
+  const stat3Ref = useRef<HTMLSpanElement>(null)
 
   useEffect(() => {
-    if (!sectionRef.current) return
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        '.community-left',
-        { opacity: 0, y: 40 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.75,
-          ease: 'power3.out',
-          scrollTrigger: { trigger: '.community-section', start: 'top 80%' },
-        },
-      )
-      gsap.fromTo(
-        '.community-visual',
-        { opacity: 0, scale: 0.92 },
-        {
-          opacity: 1,
-          scale: 1,
-          duration: 0.75,
-          delay: 0.2,
-          ease: 'power3.out',
-          scrollTrigger: { trigger: '.community-section', start: 'top 80%' },
-        },
-      )
-    }, sectionRef)
-    return () => ctx.revert()
+    gsap.fromTo(
+      '.comm-content',
+      { opacity: 0, y: 30 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: 'power3.out',
+        scrollTrigger: { trigger: sectionRef.current, start: 'top 80%' },
+      },
+    )
+
+    const s1 = { val: 0 }
+    const s2 = { val: 0 }
+    const s3 = { val: 0 }
+
+    gsap.to(s1, {
+      val: 13000,
+      duration: 2,
+      ease: 'power2.out',
+      scrollTrigger: { trigger: sectionRef.current, start: 'top 78%' },
+      onUpdate: () => {
+        if (stat1Ref.current) {
+          const v = Math.round(s1.val)
+          stat1Ref.current.textContent = v >= 1000 ? `${Math.round(v / 1000)}K+` : `${v}`
+        }
+      },
+    })
+    gsap.to(s2, {
+      val: 50,
+      duration: 1.8,
+      ease: 'power2.out',
+      scrollTrigger: { trigger: sectionRef.current, start: 'top 78%' },
+      onUpdate: () => {
+        if (stat2Ref.current) stat2Ref.current.textContent = `${Math.round(s2.val)}+`
+      },
+    })
+    gsap.to(s3, {
+      val: 4.8,
+      duration: 2,
+      ease: 'power2.out',
+      scrollTrigger: { trigger: sectionRef.current, start: 'top 78%' },
+      onUpdate: () => {
+        if (stat3Ref.current) stat3Ref.current.textContent = `${s3.val.toFixed(1)}★`
+      },
+    })
+
+    return () => ScrollTrigger.getAll().forEach((t) => t.kill())
   }, [])
 
-  const onSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    if (!email.trim()) return
-    setSuccess(true)
+  const submitJoin = () => {
+    if (email.trim()) setJoined(true)
   }
 
   return (
-    <section
-      ref={sectionRef}
-      className="community-section w-full py-20"
-      style={{
-        background: 'linear-gradient(135deg, #1E293B 0%, #0F172A 50%, #1E293B 100%)',
-        backgroundSize: '200% 200%',
-        animation: 'communityGradient 6s ease-in-out infinite',
-      }}
-    >
-      <div className="mx-auto grid w-full max-w-[1280px] grid-cols-1 gap-10 px-6 lg:grid-cols-2 lg:px-12">
-        <div className="community-left">
-          <span className="inline-flex rounded-full border border-[rgba(99,102,241,0.2)] bg-[rgba(99,102,241,0.12)] px-4 py-2 text-[12px] font-medium text-indigo-light">
-            10,000+ learners already inside
-          </span>
-          <h2 className="mt-5 text-[clamp(1.75rem,3.5vw,2.75rem)] font-bold leading-[1.15] text-white [font-family:var(--font-display)]">
-            Join the Kanonkode Community
+    <section ref={sectionRef} className="community-section relative overflow-hidden" style={{ background: '#0A0F1E' }}>
+      <div className="absolute left-0 right-0 top-0 h-px" style={{ background: 'linear-gradient(90deg, transparent, #14B8A6 30%, #4F46E5 70%, transparent)' }} />
+
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div
+          style={{
+            position: 'absolute',
+            top: '-60px',
+            left: '-40px',
+            width: '400px',
+            height: '400px',
+            borderRadius: '50%',
+            background: 'radial-gradient(circle, rgba(79,70,229,0.12), transparent 70%)',
+            filter: 'blur(60px)',
+          }}
+        />
+        <div
+          style={{
+            position: 'absolute',
+            bottom: '-60px',
+            right: '-40px',
+            width: '350px',
+            height: '350px',
+            borderRadius: '50%',
+            background: 'radial-gradient(circle, rgba(20,184,166,0.1), transparent 70%)',
+            filter: 'blur(50px)',
+          }}
+        />
+      </div>
+
+      <div className="pointer-events-none absolute inset-0 opacity-70" style={{ background: 'linear-gradient(125deg, rgba(99,102,241,0.06), rgba(20,184,166,0.04), rgba(99,102,241,0.06))', backgroundSize: '200% 200%', animation: 'commBgShift 10s ease-in-out infinite' }} />
+
+      <div className="pointer-events-none absolute bottom-0 left-0 right-0 z-10 h-24" style={{ background: 'linear-gradient(to bottom, transparent, #080D1A)' }} />
+
+      <div className="relative z-10 mx-auto max-w-[860px] px-6 py-16 text-center sm:py-20 lg:py-24">
+        <div className="comm-content">
+          <div className="mb-6 inline-flex items-center gap-2 rounded-full px-4 py-2" style={{ background: 'rgba(99,102,241,0.1)', border: '1px solid rgba(99,102,241,0.2)' }}>
+            <span className="h-2 w-2 flex-shrink-0 animate-pulse rounded-full bg-[#22C55E]" />
+            <span className="text-[12px] font-semibold" style={{ color: '#818CF8' }}>
+              10,000+ learners already inside
+            </span>
+          </div>
+
+          <h2 className="mb-4 font-display text-white font-bold leading-[1.1]" style={{ fontSize: 'clamp(2rem, 4.5vw, 3.2rem)', textShadow: '0 0 24px rgba(99,102,241,0.2)' }}>
+            Join the{' '}
+            <span
+              style={{
+                background: 'linear-gradient(135deg, #6366F1 0%, #14B8A6 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+                filter: 'drop-shadow(0 0 10px rgba(99,102,241,0.2))',
+              }}
+            >
+              Kanonkode Community
+            </span>
           </h2>
-          <p className="mt-4 max-w-md text-[15px] leading-[1.65] text-white/60">
+
+          <p className="mx-auto mb-10 max-w-lg text-[16px] leading-relaxed" style={{ color: 'rgba(255,255,255,0.5)' }}>
             Get early access to new programmes, Scholar Challenge announcements, and career resources — straight to your inbox.
           </p>
 
-          <div className="mt-8">
-            {!success ? (
-              <form onSubmit={onSubmit} className="flex flex-col gap-3 md:flex-row">
+          {!joined ? (
+            <div className="mx-auto mb-5 max-w-[500px] rounded-[14px] p-[1px]" style={{ background: 'linear-gradient(120deg, rgba(20,184,166,0.6), rgba(99,102,241,0.6), rgba(20,184,166,0.6))', backgroundSize: '200% 200%', animation: 'commBorderShift 6s linear infinite' }}>
+              <div className="flex flex-col gap-3 rounded-[13px] bg-[rgba(10,15,30,0.94)] p-2 sm:flex-row">
                 <input
+                  type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                  onKeyDown={(e) => e.key === 'Enter' && submitJoin()}
                   placeholder="Enter your email address"
-                  className="flex-1 rounded-xl border border-white/12 bg-white/6 px-5 py-4 text-[15px] text-white placeholder:text-white/35 transition-colors duration-200 focus:border-indigo-light focus:outline-none"
+                  className="flex-1 rounded-xl px-5 py-4 text-[15px] text-white outline-none transition-all duration-200 placeholder:text-white/25"
+                  style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)', caretColor: '#14B8A6' }}
+                  onFocus={(e) => {
+                    e.currentTarget.style.borderColor = 'rgba(20,184,166,0.45)'
+                    e.currentTarget.style.boxShadow = '0 0 0 3px rgba(20,184,166,0.08)'
+                  }}
+                  onBlur={(e) => {
+                    e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1)'
+                    e.currentTarget.style.boxShadow = 'none'
+                  }}
                 />
                 <button
-                  type="submit"
-                  className="flex flex-shrink-0 items-center justify-center gap-2 rounded-xl bg-teal-main px-7 py-4 text-[15px] font-bold text-white transition-all duration-200 hover:bg-teal-hover hover:shadow-teal"
+                  onClick={submitJoin}
+                  className="group flex flex-shrink-0 items-center justify-center gap-2 rounded-xl px-7 py-4 text-[15px] font-bold text-white transition-all duration-200 hover:-translate-y-0.5"
+                  style={{ background: 'linear-gradient(135deg, #14B8A6 0%, #0D9488 100%)', boxShadow: '0 6px 20px rgba(20,184,166,0.3)' }}
                 >
-                  Join <ArrowRight size={18} />
+                  Join
+                  <ArrowRight size={16} className="transition-transform duration-200 group-hover:translate-x-1" />
                 </button>
-              </form>
-            ) : (
-              <div className="flex items-center gap-2 font-semibold text-teal-main">
-                <CheckCircle2 size={20} />
-                You&apos;re in! Check your inbox.
-              </div>
-            )}
-          </div>
-
-          <div className="mt-5 flex items-center gap-3">
-            <div className="flex items-center">
-              <div className="flex h-8 w-8 items-center justify-center rounded-full border-2 border-dark-card bg-indigo-main text-sm font-semibold text-white">A</div>
-              <div className="-ml-2 flex h-8 w-8 items-center justify-center rounded-full border-2 border-dark-card bg-teal-main text-sm font-semibold text-white">P</div>
-              <div className="-ml-2 flex h-8 w-8 items-center justify-center rounded-full border-2 border-dark-card bg-indigo-light text-sm font-semibold text-white">R</div>
-              <div className="-ml-2 flex h-8 w-8 items-center justify-center rounded-full border-2 border-dark-card bg-[#8B5CF6] text-sm font-semibold text-white">S</div>
-            </div>
-            <span className="text-[13px] text-white/50">Join 10,000+ students, graduates &amp; professionals</span>
-          </div>
-        </div>
-
-        <div className="community-visual relative hidden h-64 md:block">
-          <div className="absolute left-1/2 top-1/2 w-[260px] -translate-x-1/2 -translate-y-1/2 rounded-xl2 border border-white/10 bg-white/6 p-5 backdrop-blur-md" style={{ animation: 'float1 3s ease-in-out infinite' }}>
-            <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-indigo-main text-sm font-bold text-white">K</div>
-              <div>
-                <p className="text-[14px] font-semibold text-white">Kanonkode Community</p>
-                <p className="mt-0.5 text-[13px] text-teal-main">Scholar Challenge now open →</p>
               </div>
             </div>
+          ) : (
+            <div className="mx-auto mb-5 inline-flex items-center gap-3 rounded-xl px-6 py-4" style={{ background: 'rgba(20,184,166,0.1)', border: '1px solid rgba(20,184,166,0.3)' }}>
+              <CheckCircle2 size={20} style={{ color: '#14B8A6' }} />
+              <p className="text-[14px] font-semibold" style={{ color: '#14B8A6' }}>
+                You&apos;re in! Check your inbox for a welcome email.
+              </p>
+            </div>
+          )}
+
+          <p className="text-[12px]" style={{ color: 'rgba(255,255,255,0.2)' }}>
+            🔒 No spam. Unsubscribe anytime.
+          </p>
+
+          <div className="mt-8 flex items-center justify-center gap-3">
+            <div className="flex -space-x-2.5">
+              {[
+                { bg: '#4F46E5', l: 'A' },
+                { bg: '#14B8A6', l: 'P' },
+                { bg: '#8B5CF6', l: 'R' },
+                { bg: '#F59E0B', l: 'S' },
+                { bg: '#EF4444', l: 'M' },
+              ].map((av, i) => (
+                <div key={i} className="flex h-8 w-8 items-center justify-center rounded-full border-2 text-[10px] font-bold text-white" style={{ backgroundColor: av.bg, borderColor: '#0A0F1E', position: 'relative', zIndex: 5 - i }}>
+                  {av.l}
+                </div>
+              ))}
+            </div>
+            <p className="text-[13px]" style={{ color: 'rgba(255,255,255,0.4)' }}>
+              Joined by <span className="font-semibold text-white">10,000+</span> students & professionals
+            </p>
           </div>
 
-          <div className="absolute right-0 top-[10px] w-[180px] rounded-xl border border-[rgba(99,102,241,0.2)] bg-[rgba(99,102,241,0.12)] p-3.5" style={{ animation: 'float2 4s ease-in-out infinite' }}>
-            <div className="flex items-center gap-2">
-              <BellRing size={16} className="text-indigo-light" />
-              <p className="text-[12px] text-white/75">New cohort starting soon</p>
-            </div>
-          </div>
-
-          <div className="absolute bottom-[10px] left-0 w-[200px] rounded-xl border border-[rgba(20,184,166,0.2)] bg-[rgba(20,184,166,0.1)] p-3.5" style={{ animation: 'float3 3.5s ease-in-out infinite' }}>
-            <div className="flex items-center gap-2">
-              <Users size={16} className="text-teal-main" />
-              <p className="text-[12px] text-white/75">230 learners online now</p>
-            </div>
+          <div className="mt-12 flex w-full flex-wrap items-center justify-center gap-y-4">
+            {[
+              { numRef: stat1Ref, fallback: '13K+', label: 'Community members', color: '#6366F1', icon: Users },
+              { numRef: stat2Ref, fallback: '50+', label: 'Live cohorts run', color: '#14B8A6', icon: Zap },
+              { numRef: stat3Ref, fallback: '4.8★', label: 'Average rating', color: '#F59E0B', icon: Star },
+            ].map((s, i, arr) => {
+              const StatIcon = s.icon
+              return (
+                <div key={s.label} className="flex w-full items-center justify-center sm:w-auto">
+                  <div className="px-6 text-center sm:px-8">
+                    <div className="mb-2 flex items-center justify-center">
+                      <span className="flex h-8 w-8 items-center justify-center rounded-lg" style={{ background: `${s.color}22` }}>
+                        <StatIcon size={14} style={{ color: s.color }} />
+                      </span>
+                    </div>
+                    <span ref={s.numRef} className="mb-1 block font-display text-[28px] font-bold leading-none" style={{ color: s.color }}>
+                      {s.fallback}
+                    </span>
+                    <p className="text-[12px]" style={{ color: 'rgba(255,255,255,0.35)' }}>
+                      {s.label}
+                    </p>
+                  </div>
+                  {i < arr.length - 1 && <div className="hidden h-8 w-px flex-shrink-0 sm:block" style={{ background: 'rgba(255,255,255,0.08)' }} />}
+                </div>
+              )
+            })}
           </div>
         </div>
       </div>
+
+      <style jsx global>{`
+        @keyframes commBgShift {
+          0%,
+          100% {
+            background-position: 0% 50%;
+          }
+          50% {
+            background-position: 100% 50%;
+          }
+        }
+        @keyframes commBorderShift {
+          0% {
+            background-position: 0% 50%;
+          }
+          100% {
+            background-position: 100% 50%;
+          }
+        }
+      `}</style>
     </section>
   )
 }

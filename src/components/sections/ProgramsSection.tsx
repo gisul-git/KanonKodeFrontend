@@ -35,9 +35,9 @@ function ProgramCard({ course }: { course: Course }) {
         shadow-card flex flex-col
         hover:shadow-card-hover hover:-translate-y-1
         transition-all duration-300"
-      style={{ width: '360px', minHeight: '540px' }}
+      style={{ width: 'min(360px, 86vw)', minHeight: '540px' }}
     >
-      <div className="relative flex-shrink-0" style={{ height: '220px' }}>
+      <div className="relative h-[200px] flex-shrink-0 sm:h-[220px]">
         <Image
           src={course.image}
           alt={course.title}
@@ -185,7 +185,7 @@ export default function ProgramsSection() {
   return (
     <section
       ref={sectionRef}
-      className="programs-section bg-white py-24 lg:py-32"
+      className="programs-section bg-white py-16 sm:py-20 lg:py-24"
       style={{ overflow: 'hidden' }}
     >
       <div className="max-w-[1280px] mx-auto px-6 lg:px-12">
@@ -254,7 +254,7 @@ export default function ProgramsSection() {
             }} />
 
         <div
-          className="flex gap-5 h-full items-stretch"
+          className="flex h-full items-stretch gap-4 sm:gap-5"
           style={{
             animation: 'cardsScroll 42s linear infinite',
             width: 'max-content',

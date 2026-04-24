@@ -34,7 +34,7 @@ export default function FAQSection() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="w-full bg-bg-soft py-24 lg:py-32">
+    <section ref={sectionRef} className="w-full bg-bg-soft py-16 sm:py-20 lg:py-24">
       <div className="mx-auto grid w-full max-w-[1280px] grid-cols-1 gap-10 px-6 lg:grid-cols-[38%_62%] lg:px-12">
         <div>
           <p className="mb-3 text-[11px] font-medium tracking-[0.15em] text-teal-main">FAQ</p>

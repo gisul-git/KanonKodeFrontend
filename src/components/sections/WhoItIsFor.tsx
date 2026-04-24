@@ -88,7 +88,7 @@ export default function WhoItIsFor() {
   }, [])
 
   return (
-    <section className="who-section relative overflow-hidden py-24 lg:py-32" style={{ backgroundColor: '#F8FAFC' }}>
+    <section className="who-section relative overflow-hidden py-16 sm:py-20 lg:py-24" style={{ backgroundColor: '#F8FAFC' }}>
       <div
         className="pointer-events-none absolute inset-0"
         style={{

@@ -8,11 +8,10 @@ import { useEffect, useState } from 'react'
 import { cn } from '@/lib/utils'
 
 const links = [
-  { id: 'about', label: 'About', href: '#' },
+  { id: 'about', label: 'About', href: '/about' },
   { id: 'scholar', label: 'Scholar Challenge', href: '#' },
   { id: 'workshop', label: 'Workshop', href: '#' },
   { id: 'institution', label: 'For Institution', href: '#' },
-  { id: 'career', label: 'Career', href: '#' },
 ]
 
 const courseColumns = [
@@ -31,9 +30,9 @@ function CourseDropdown({ open }: { open: boolean }) {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -8 }}
           transition={{ duration: 0.2, ease: 'easeOut' }}
-          className="absolute left-0 top-full z-50 mt-3 w-[760px] rounded-xl2 bg-white p-6 shadow-card-hover"
+          className="absolute left-0 top-full z-50 mt-3 w-[min(760px,calc(100vw-2rem))] rounded-xl2 bg-white p-6 shadow-card-hover"
         >
-          <div className="grid grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {courseColumns.map((col) => (
               <div key={col.title}>
                 <p className="mb-3 text-sm font-semibold text-indigo-main">{col.title}</p>
@@ -64,14 +63,14 @@ function MobileDrawer({ open, onClose }: { open: boolean; onClose: () => void })
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 z-40 bg-dark-hero/40 backdrop-blur-sm md:hidden"
+            className="fixed inset-0 z-40 bg-dark-hero/40 backdrop-blur-sm lg:hidden"
           />
           <motion.aside
             initial={{ x: '100%' }}
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{ duration: 0.25, ease: 'easeOut' }}
-            className="fixed right-0 top-0 z-50 flex h-full w-[84%] max-w-sm flex-col bg-white p-6 md:hidden"
+            className="fixed right-0 top-0 z-50 flex h-full w-[84%] max-w-sm flex-col bg-white p-6 lg:hidden"
           >
             <div className="mb-8 flex items-center justify-between">
               <span className="text-base font-semibold text-dark-hero">Menu</span>
@@ -110,14 +109,22 @@ function MobileDrawer({ open, onClose }: { open: boolean; onClose: () => void })
 }
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false)
+  const [lightThemeNav, setLightThemeNav] = useState(false)
   const [dropdownOpen, setDropdownOpen] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [activeLink] = useState('about')
-  const isScrolled = scrolled
+  const isLight = lightThemeNav
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY >= 80)
+    const onScroll = () => {
+      const trigger = document.querySelector('.whatk-section') as HTMLElement | null
+      if (!trigger) {
+        setLightThemeNav(window.scrollY >= 80)
+        return
+      }
+      const switchPoint = trigger.offsetTop - 68
+      setLightThemeNav(window.scrollY >= switchPoint)
+    }
     onScroll()
     window.addEventListener('scroll', onScroll)
     return () => window.removeEventListener('scroll', onScroll)
@@ -128,23 +135,23 @@ export default function Navbar() {
       <header
         className={cn(
           'fixed top-0 z-40 h-[68px] w-full transition-all duration-300',
-          isScrolled
-            ? 'border-b border-transparent bg-[rgba(7,14,32,0.20)] shadow-[0_10px_28px_rgba(4,10,24,0.42)] backdrop-blur-[32px]'
+          isLight
+            ? 'border-b border-[rgba(15,23,42,0.08)] bg-white shadow-[0_8px_24px_rgba(15,23,42,0.08)]'
             : 'border-b border-transparent bg-transparent',
         )}
       >
         <div className="mx-auto flex h-full w-full max-w-[1280px] items-center justify-between px-4 lg:px-8">
           <Link href="/" className="group mr-8 flex shrink-0 items-center">
-            <Image src="/KanonKode%20Light%20Theme.svg" alt="Kanonkode logo" width={170} height={44} priority className="h-11 w-auto" />
+            <Image src={isLight ? '/logo.svg' : '/KanonKode%20Light%20Theme.svg'} alt="Kanonkode logo" width={170} height={44} priority className="h-11 w-auto" />
           </Link>
 
-          <div className="hidden min-w-0 flex-1 items-center justify-between md:flex">
+          <div className="hidden min-w-0 flex-1 items-center justify-between lg:flex">
             <nav className="flex items-center gap-4 lg:gap-5">
               <div className="relative" onMouseEnter={() => setDropdownOpen(true)} onMouseLeave={() => setDropdownOpen(false)}>
                 <button
                   className={cn(
                     'flex items-center gap-1 border-b-2 border-transparent py-1 text-sm font-medium whitespace-nowrap transition-colors duration-150',
-                    'text-white/80 hover:text-white',
+                    isLight ? 'text-text-secondary hover:text-dark-hero' : 'text-white/80 hover:text-white',
                   )}
                 >
                   Explore Courses <ChevronDown size={16} />
@@ -157,8 +164,7 @@ export default function Navbar() {
                   href={link.href}
                   className={cn(
                     'border-b-2 border-transparent py-1 text-sm font-medium whitespace-nowrap transition-colors duration-150',
-                    'text-white/80 hover:text-white',
-                    activeLink === link.id && 'border-indigo-light text-white',
+                    isLight ? 'text-text-secondary hover:text-dark-hero' : 'text-white/80 hover:text-white',
                   )}
                 >
                   {link.label}
@@ -169,14 +175,14 @@ export default function Navbar() {
             <div className="ml-5 flex shrink-0 items-center gap-2 lg:gap-3">
               <button
                 aria-label="Search"
-                className={cn('transition-colors duration-150', 'text-white/70 hover:text-white')}
+                className={cn('transition-colors duration-150', isLight ? 'text-text-secondary hover:text-dark-hero' : 'text-white/70 hover:text-white')}
               >
                 <Search size={20} />
               </button>
               <button
                 className={cn(
                   'rounded-lg border-[1.5px] bg-transparent px-4 py-2 text-sm font-medium transition-all duration-200',
-                  'border-white/40 text-white hover:bg-white/10',
+                  isLight ? 'border-[rgba(15,23,42,0.2)] text-dark-hero hover:bg-bg-tinted' : 'border-white/40 text-white hover:bg-white/10',
                 )}
               >
                 Contact Us
@@ -190,7 +196,7 @@ export default function Navbar() {
           <button
             aria-label="Open menu"
             onClick={() => setMobileOpen(true)}
-            className={cn('md:hidden text-white')}
+            className={cn('lg:hidden', isLight ? 'text-dark-hero' : 'text-white')}
           >
             <Menu size={24} />
           </button>

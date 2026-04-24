@@ -43,7 +43,7 @@ export default function CareerCounselling() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="counselling-section relative w-full overflow-hidden bg-dark-hero py-20 lg:py-24">
+    <section ref={sectionRef} className="counselling-section relative w-full overflow-hidden bg-dark-hero py-16 sm:py-20 lg:py-24">
       <div className="pointer-events-none absolute -left-[100px] -top-[100px] h-[500px] w-[500px] rounded-full bg-[radial-gradient(circle,rgba(99,102,241,0.15)_0%,transparent_70%)] blur-[60px]" />
       <div className="pointer-events-none absolute -bottom-[80px] -right-[80px] h-[400px] w-[400px] rounded-full bg-[radial-gradient(circle,rgba(20,184,166,0.12)_0%,transparent_70%)] blur-[50px]" />
       <div className="pointer-events-none absolute inset-0 [background-image:linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] [background-size:60px_60px]" />

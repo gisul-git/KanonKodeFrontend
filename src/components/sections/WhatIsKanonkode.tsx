@@ -93,7 +93,7 @@ export default function WhatIsKanonkode() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="whatk-section bg-white py-24 lg:py-32">
+    <section ref={sectionRef} className="whatk-section bg-white py-16 sm:py-20 lg:py-24">
       <div className="mx-auto max-w-[1280px] px-6 lg:px-12">
         <div className="whatk-heading mb-14 max-w-2xl">
           <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.15em] text-teal-main">What Kanonkode Is</p>
@@ -385,10 +385,10 @@ export default function WhatIsKanonkode() {
           </div>
         </div>
 
-        <div className="outcomes-strip mt-5 flex flex-col flex-wrap items-start justify-between gap-6 rounded-2xl bg-dark-hero px-8 py-7 sm:flex-row sm:items-center lg:px-10">
+        <div className="outcomes-strip mt-5 flex flex-col items-start justify-between gap-6 rounded-2xl bg-dark-hero px-6 py-7 sm:px-8 lg:px-10">
           <p className="flex-shrink-0 whitespace-nowrap font-display text-[16px] font-semibold text-white">Outcomes our learners achieve</p>
 
-          <div className="flex flex-wrap items-center gap-0">
+          <div className="flex w-full flex-wrap items-center gap-y-4">
             {[
               {
                 icon: TrendingUp,
@@ -425,8 +425,8 @@ export default function WhatIsKanonkode() {
             ].map((stat, i) => {
               const Icon = stat.icon
               return (
-                <div key={i} className="flex items-center">
-                  {i > 0 && <div className="mx-6 h-10 w-px flex-shrink-0 lg:mx-8" style={{ background: 'rgba(255,255,255,0.1)' }} />}
+                <div key={i} className="flex w-full items-center sm:w-1/2 lg:w-auto">
+                  {i > 0 && <div className="mx-4 hidden h-10 w-px flex-shrink-0 lg:mx-8 lg:block" style={{ background: 'rgba(255,255,255,0.1)' }} />}
                   <div className="flex items-center gap-3">
                     <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full" style={{ backgroundColor: stat.iconBg }}>
                       <Icon size={20} style={{ color: stat.iconColor }} />
