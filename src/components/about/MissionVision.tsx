@@ -23,38 +23,58 @@ export default function MissionVision() {
   }, [])
 
   return (
-    <section ref={ref} className="py-24 lg:py-32" style={{ background: '#F8FAFC' }}>
-      <div className="max-w-[1280px] mx-auto px-6 lg:px-12">
-        <div className="text-center mb-14">
-          <p className="text-teal-main font-semibold text-[11px] tracking-[0.15em] uppercase mb-3">What Drives Us</p>
-          <h2 className="font-display font-bold text-dark-hero" style={{ fontSize: 'clamp(2rem, 3.5vw, 2.8rem)' }}>
-            Mission & Vision
+    <section ref={ref} className="w-full bg-white py-16 sm:py-20 lg:py-24">
+      <div className="mx-auto w-full max-w-[1280px] px-6 lg:px-12">
+        <div className="mb-12 text-center sm:mb-16">
+          <p className="mb-3 text-[11px] font-medium uppercase tracking-[0.15em] text-teal-main">What Drives Us</p>
+          <h2
+            className="font-display font-bold leading-[1.1] text-dark-hero"
+            style={{ fontSize: 'clamp(1.8rem, 3.5vw, 2.8rem)' }}
+          >
+            Mission &{' '}
+            <span
+              style={{
+                background: 'linear-gradient(135deg, #4F46E5, #14B8A6)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+              }}
+            >
+              Vision
+            </span>
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <div className="mv-card relative rounded-2xl p-10 overflow-hidden" style={{ background: '#0F172A', minHeight: '320px' }}>
+        <div className="grid grid-cols-1 items-stretch gap-4 sm:gap-6 lg:grid-cols-2">
+          <div className="mv-card relative overflow-hidden rounded-xl3 p-5 sm:p-8 lg:p-10" style={{ background: '#0F172A', minHeight: '280px' }}>
             <div
-              className="absolute -top-16 -right-16 w-48 h-48 rounded-full pointer-events-none"
+              className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full"
               style={{
-                background: 'radial-gradient(circle, rgba(79,70,229,0.25), transparent 70%)',
+                background: 'radial-gradient(circle, rgba(99,102,241,0.25) 0%, transparent 70%)',
                 filter: 'blur(30px)',
+              }}
+            />
+            <div
+              className="pointer-events-none absolute -bottom-16 -left-16 h-48 w-48 rounded-full"
+              style={{
+                background: 'radial-gradient(circle, rgba(20,184,166,0.15) 0%, transparent 70%)',
+                filter: 'blur(25px)',
               }}
             />
             <div className="relative z-10">
               <div
-                className="w-14 h-14 rounded-2xl mb-6 flex items-center justify-center"
+                className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl"
                 style={{ background: 'rgba(99,102,241,0.15)', border: '1px solid rgba(99,102,241,0.25)' }}
               >
                 <Target size={26} style={{ color: '#6366F1' }} />
               </div>
-              <p className="text-[11px] font-bold tracking-[0.15em] uppercase mb-3" style={{ color: '#6366F1' }}>
+              <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.15em]" style={{ color: '#6366F1' }}>
                 Our Mission
               </p>
-              <h3 className="font-display font-bold text-white text-[26px] leading-snug mb-4">
+              <h3 className="mb-4 text-[24px] font-bold leading-[1.2] text-white [font-family:var(--font-display)] sm:text-[28px] lg:text-[32px]">
                 Make Practical Tech Education Accessible to Every Learner
               </h3>
-              <p className="text-[15px] leading-relaxed" style={{ color: 'rgba(255,255,255,0.55)' }}>
+              <p className="text-[15px] leading-[1.65] text-white/65">
                 We build programmes that go beyond content - combining live instruction, real execution, and career support into one
                 structured system that actually works.
               </p>
@@ -62,32 +82,38 @@ export default function MissionVision() {
           </div>
 
           <div
-            className="mv-card relative rounded-2xl p-10 overflow-hidden"
+            className="mv-card relative flex overflow-hidden rounded-xl3 p-5 sm:p-8 lg:p-10"
             style={{
-              background: 'linear-gradient(145deg, #F8FAFF, #EEF2FF)',
+              background: 'linear-gradient(145deg, #F8FAFF 0%, #EEF2FF 60%, #F0F9FF 100%)',
               border: '1.5px solid rgba(99,102,241,0.12)',
-              minHeight: '320px',
+              minHeight: '280px',
             }}
           >
             <div
-              className="absolute inset-0 rounded-2xl overflow-hidden pointer-events-none"
-              style={{
-                backgroundImage: 'radial-gradient(circle, rgba(99,102,241,0.07) 1px, transparent 1px)',
-                backgroundSize: '20px 20px',
-              }}
-            />
+              className="pointer-events-none absolute inset-0 overflow-hidden rounded-xl3"
+            >
+              <div
+                style={{
+                  position: 'absolute',
+                  inset: 0,
+                  backgroundImage: 'radial-gradient(circle, rgba(99,102,241,0.06) 1px, transparent 1px)',
+                  backgroundSize: '20px 20px',
+                }}
+              />
+            </div>
+            <div className="absolute -right-4 -top-4 h-28 w-28 rounded-bl-[7rem] border-2 border-[rgba(99,102,241,0.15)]" />
             <div className="relative z-10">
               <div
-                className="w-14 h-14 rounded-2xl mb-6 flex items-center justify-center bg-white"
+                className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-white"
                 style={{ border: '1px solid rgba(99,102,241,0.15)', boxShadow: '0 4px 16px rgba(99,102,241,0.1)' }}
               >
                 <Telescope size={26} style={{ color: '#4F46E5' }} />
               </div>
-              <p className="text-[11px] font-bold tracking-[0.15em] uppercase mb-3 text-teal-main">Our Vision</p>
-              <h3 className="font-display font-bold text-dark-hero text-[26px] leading-snug mb-4">
+              <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.15em] text-teal-main">Our Vision</p>
+              <h3 className="mb-4 text-[24px] font-bold leading-[1.2] text-dark-hero [font-family:var(--font-display)] sm:text-[28px] lg:text-[32px]">
                 Be the Career Launchpad for 1 Million+ Tech Professionals
               </h3>
-              <p className="text-[15px] text-text-secondary leading-relaxed">
+              <p className="text-[15px] leading-[1.65] text-text-secondary">
                 A future where every motivated learner - regardless of background - has a clear, supported, and structured path to a
                 meaningful tech career.
               </p>

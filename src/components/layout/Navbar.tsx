@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { ChevronDown, Menu, Search, UserCircle2, X } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { cn } from '@/lib/utils'
 
@@ -70,16 +71,16 @@ function MobileDrawer({ open, onClose }: { open: boolean; onClose: () => void })
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{ duration: 0.25, ease: 'easeOut' }}
-            className="fixed right-0 top-0 z-50 flex h-full w-[84%] max-w-sm flex-col bg-white p-6 lg:hidden"
+            className="fixed right-0 top-0 z-50 flex h-full w-[92%] max-w-[320px] flex-col bg-white p-4 sm:w-[84%] sm:max-w-sm sm:p-6 lg:hidden"
           >
-            <div className="mb-8 flex items-center justify-between">
+            <div className="mb-6 flex items-center justify-between sm:mb-8">
               <span className="text-base font-semibold text-dark-hero">Menu</span>
               <button onClick={onClose} className="text-text-secondary transition-colors hover:text-indigo-main" aria-label="Close menu">
                 <X size={22} />
               </button>
             </div>
             <nav className="space-y-4">
-              <Link href="#" onClick={onClose} className="block text-base font-medium text-text-secondary transition-colors hover:text-indigo-main">
+              <Link href="#" onClick={onClose} className="block text-base font-medium text-text-secondary transition-colors hover:text-indigo-main max-[360px]:text-[15px]">
                 Explore Courses
               </Link>
               {links.map((link) => (
@@ -87,17 +88,17 @@ function MobileDrawer({ open, onClose }: { open: boolean; onClose: () => void })
                   key={link.id}
                   href={link.href}
                   onClick={onClose}
-                  className="block text-base font-medium text-text-secondary transition-colors hover:text-indigo-main"
+                  className="block text-base font-medium text-text-secondary transition-colors hover:text-indigo-main max-[360px]:text-[15px]"
                 >
                   {link.label}
                 </Link>
               ))}
             </nav>
             <div className="mt-auto space-y-3">
-              <button className="w-full rounded-lg border-[1.5px] border-indigo-main px-4 py-2 text-sm font-medium text-indigo-main transition-all duration-200 hover:bg-bg-tinted">
+              <button className="w-full rounded-lg border-[1.5px] border-indigo-main px-4 py-2.5 text-sm font-medium text-indigo-main transition-all duration-200 hover:bg-bg-tinted">
                 Contact Us
               </button>
-              <button className="flex w-full items-center justify-center gap-2 rounded-lg bg-teal-main px-5 py-2 text-sm font-semibold text-white transition-all duration-200 hover:bg-teal-hover hover:shadow-teal">
+              <button className="flex w-full items-center justify-center gap-2 rounded-lg bg-teal-main px-5 py-2.5 text-sm font-semibold text-white transition-all duration-200 hover:bg-teal-hover hover:shadow-teal">
                 Login <UserCircle2 size={16} />
               </button>
             </div>
@@ -112,14 +113,15 @@ export default function Navbar() {
   const [lightThemeNav, setLightThemeNav] = useState(false)
   const [dropdownOpen, setDropdownOpen] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
-  const [activeLink] = useState('about')
+  const pathname = usePathname()
   const isLight = lightThemeNav
 
   useEffect(() => {
     const onScroll = () => {
-      const trigger = document.querySelector('.whatk-section') as HTMLElement | null
+      const triggerSelector = pathname === '/about' ? '#story' : '.whatk-section'
+      const trigger = document.querySelector(triggerSelector) as HTMLElement | null
       if (!trigger) {
-        setLightThemeNav(window.scrollY >= 80)
+        setLightThemeNav(pathname === '/about' ? false : window.scrollY >= 80)
         return
       }
       const switchPoint = trigger.offsetTop - 68
@@ -128,21 +130,28 @@ export default function Navbar() {
     onScroll()
     window.addEventListener('scroll', onScroll)
     return () => window.removeEventListener('scroll', onScroll)
-  }, [])
+  }, [pathname])
 
   return (
     <>
       <header
         className={cn(
-          'fixed top-0 z-40 h-[68px] w-full transition-all duration-300',
+          'fixed top-0 z-40 h-16 w-full transition-all duration-300 sm:h-[68px]',
           isLight
             ? 'border-b border-[rgba(15,23,42,0.08)] bg-white shadow-[0_8px_24px_rgba(15,23,42,0.08)]'
-            : 'border-b border-transparent bg-transparent',
+            : 'border-b border-transparent bg-dark-hero/10 backdrop-blur-sm',
         )}
       >
-        <div className="mx-auto flex h-full w-full max-w-[1280px] items-center justify-between px-4 lg:px-8">
-          <Link href="/" className="group mr-8 flex shrink-0 items-center">
-            <Image src={isLight ? '/logo.svg' : '/KanonKode%20Light%20Theme.svg'} alt="Kanonkode logo" width={170} height={44} priority className="h-11 w-auto" />
+        <div className="mx-auto flex h-full w-full max-w-[1280px] items-center justify-between px-3 sm:px-4 lg:px-8">
+          <Link href="/" className="group mr-3 flex shrink-0 items-center sm:mr-8">
+            <Image
+              src={isLight ? '/logo.svg' : '/KanonKode%20Light%20Theme.svg'}
+              alt="Kanonkode logo"
+              width={170}
+              height={44}
+              priority
+              className="h-9 w-auto max-w-[150px] sm:h-11 sm:max-w-none"
+            />
           </Link>
 
           <div className="hidden min-w-0 flex-1 items-center justify-between lg:flex">
@@ -159,16 +168,25 @@ export default function Navbar() {
                 <CourseDropdown open={dropdownOpen} />
               </div>
               {links.map((link) => (
-                <Link
-                  key={link.id}
-                  href={link.href}
-                  className={cn(
-                    'border-b-2 border-transparent py-1 text-sm font-medium whitespace-nowrap transition-colors duration-150',
-                    isLight ? 'text-text-secondary hover:text-dark-hero' : 'text-white/80 hover:text-white',
-                  )}
-                >
-                  {link.label}
-                </Link>
+                (() => {
+                  const isActive = link.href !== '#' && pathname === link.href
+                  return (
+                    <Link
+                      key={link.id}
+                      href={link.href}
+                      className={cn(
+                        'border-b-2 py-1 text-sm font-medium whitespace-nowrap transition-colors duration-150',
+                        isActive
+                          ? isLight
+                            ? 'border-indigo-main text-indigo-main'
+                            : 'border-white text-white'
+                          : cn('border-transparent', isLight ? 'text-text-secondary hover:text-dark-hero' : 'text-white/80 hover:text-white'),
+                      )}
+                    >
+                      {link.label}
+                    </Link>
+                  )
+                })()
               ))}
             </nav>
 
@@ -196,7 +214,7 @@ export default function Navbar() {
           <button
             aria-label="Open menu"
             onClick={() => setMobileOpen(true)}
-            className={cn('lg:hidden', isLight ? 'text-dark-hero' : 'text-white')}
+            className={cn('rounded-md p-1.5 lg:hidden', isLight ? 'text-dark-hero' : 'text-white')}
           >
             <Menu size={24} />
           </button>
