@@ -31,9 +31,9 @@ export default function HeroSection() {
   }, [])
 
   return (
-    <section className="relative min-h-screen w-full overflow-hidden">
+    <section className="relative min-h-screen w-full overflow-hidden" style={{ background: '#F8FAFC' }}>
       <Image
-        src="/BgHero.png"
+        src="/images/HeroImage.png"
         alt="Kanonkode hero background"
         fill
         priority
@@ -46,7 +46,7 @@ export default function HeroSection() {
         style={{
           zIndex: 1,
           background:
-            'linear-gradient(105deg, rgba(0, 0, 0, 0.92) 0%, rgba(15, 23, 42, 0.74) 40%, rgba(15, 23, 42, 0) 70%, rgba(15, 23, 42, 0.22) 100%)',
+            'linear-gradient(95deg, rgba(248,250,252,0.97) 0%, rgba(248,250,252,0.9) 38%, rgba(248,250,252,0.18) 68%, rgba(248,250,252,0) 100%)',
         }}
       />
       <div
@@ -54,12 +54,12 @@ export default function HeroSection() {
         style={{
           zIndex: 2,
           background:
-            'linear-gradient(to bottom right, rgba(79, 70, 229, 0.18) 0%, transparent 50%, rgba(20, 184, 166, 0.08) 100%)',
+            'linear-gradient(to bottom right, rgba(79, 70, 229, 0.12) 0%, transparent 50%, rgba(20, 184, 166, 0.08) 100%)',
         }}
       />
       <div
         className="pointer-events-none absolute bottom-0 left-0 right-0 h-[200px]"
-        style={{ zIndex: 3, background: 'linear-gradient(to bottom, transparent, rgba(15,23,42,0.6))' }}
+        style={{ zIndex: 3, background: 'linear-gradient(to bottom, transparent, #F8FAFC)' }}
       />
 
       {/* <div className="hero-deco-text pointer-events-none absolute right-[60px] top-1/2 hidden -translate-y-1/2 text-right lg:block" style={{ zIndex: 5 }}>
@@ -70,15 +70,15 @@ export default function HeroSection() {
 
       <div className="relative z-10 mx-auto flex min-h-screen w-full max-w-[1280px] flex-col justify-center px-6 pb-20 pt-[108px] lg:px-16">
         <div className="max-w-[680px]">
-          <div className="hero-item inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/8 px-4 py-2 backdrop-blur-sm">
+          <div className="hero-item inline-flex items-center gap-2 rounded-full border border-indigo-main/15 bg-indigo-main/8 px-4 py-2">
             <span className="h-2 w-2 animate-pulse rounded-full bg-teal-main" />
-            <span className="text-[13px] font-medium text-white/80">New: AI Programmes Now Live →</span>
+            <span className="text-[13px] font-medium text-indigo-main/80">New: AI Programmes Now Live →</span>
           </div>
 
           <div className="hero-item mt-6">
             <h1 className="text-[clamp(3rem,7vw,6rem)] font-black leading-[1] tracking-[-0.03em] [font-family:var(--font-display)]">
-              <span className="block text-white">Learn Today.</span>
-              <span className="block text-white">Build Real Skills.</span>
+              <span className="block text-dark-hero">Learn Today.</span>
+              <span className="block text-dark-hero">Build Real Skills.</span>
               <span className="relative block text-indigo-light">
                 Get Hired<span className="text-teal-main">.</span>
                 <span className="absolute -bottom-2 left-0 h-[14px] w-[72%]">
@@ -99,15 +99,15 @@ export default function HeroSection() {
             </h1>
           </div>
 
-          <p className="hero-item mt-6 max-w-[480px] text-[17px] leading-[1.65] text-white/70">
-            Live cohort-based learning with real projects, industry mentorship, and career support — from <strong className="font-bold text-white">Day 1</strong> to your dream job.
+          <p className="hero-item mt-6 max-w-[480px] text-[17px] leading-[1.65] text-text-secondary">
+            Live cohort-based learning with real projects, industry mentorship, and career support — from <strong className="font-bold text-dark-hero">Day 1</strong> to your dream job.
           </p>
 
           <div className="hero-item mt-8 flex flex-wrap items-center gap-4">
             <button className="inline-flex items-center gap-2 rounded-xl bg-indigo-main px-8 py-4 text-[16px] font-bold text-white transition-all duration-250 [transition-timing-function:cubic-bezier(0.34,1.56,0.64,1)] hover:-translate-y-0.5 hover:bg-indigo-hover hover:shadow-[0_8px_24px_rgba(79,70,229,0.45)]">
               Start Building Skills <ArrowRight size={18} />
             </button>
-            <button className="rounded-xl border-[1.5px] border-white/25 bg-white/8 px-8 py-4 text-[16px] font-semibold text-white backdrop-blur-sm transition-all duration-200 hover:border-white/40 hover:bg-white/15">
+            <button className="rounded-xl border-[1.5px] border-indigo-main/25 bg-white px-8 py-4 text-[16px] font-semibold text-dark-hero transition-all duration-200 hover:border-indigo-main/40 hover:bg-indigo-main/5">
               Explore Programmes
             </button>
           </div>
@@ -115,44 +115,44 @@ export default function HeroSection() {
           <div className="hero-item mt-10 flex flex-wrap items-center gap-4 md:gap-6 lg:gap-8">
             <div className="flex flex-col items-center gap-1 text-center">
               <Users size={18} className="text-indigo-light" />
-              <span className="stat-number font-display text-[22px] font-bold text-white">2,000+</span>
-              <span className="max-w-[80px] text-center text-[11px] text-white/50">Students Enrolled</span>
+              <span className="stat-number font-display text-[22px] font-bold text-dark-hero">2,000+</span>
+              <span className="max-w-[80px] text-center text-[11px] text-text-secondary">Students Enrolled</span>
             </div>
-            <div className="hidden h-8 w-px bg-white/12 md:block" />
+            <div className="hidden h-8 w-px bg-[rgba(15,23,42,0.1)] md:block" />
             <div className="flex flex-col items-center gap-1 text-center">
               <Zap size={18} className="text-teal-main" />
-              <span className="stat-number font-display text-[22px] font-bold text-white">10+</span>
-              <span className="max-w-[80px] text-center text-[11px] text-white/50">Live Cohorts Running</span>
+              <span className="stat-number font-display text-[22px] font-bold text-dark-hero">10+</span>
+              <span className="max-w-[80px] text-center text-[11px] text-text-secondary">Live Cohorts Running</span>
             </div>
-            <div className="hidden h-8 w-px bg-white/12 md:block" />
+            <div className="hidden h-8 w-px bg-[rgba(15,23,42,0.1)] md:block" />
             <div className="flex flex-col items-center gap-1 text-center">
               <Star size={18} className="text-amber-400" />
-              <span className="stat-number font-display text-[22px] font-bold text-white">1k+</span>
-              <span className="max-w-[80px] text-center text-[11px] text-white/50">Scholar Challenge Participants</span>
+              <span className="stat-number font-display text-[22px] font-bold text-dark-hero">1k+</span>
+              <span className="max-w-[80px] text-center text-[11px] text-text-secondary">Scholar Challenge Participants</span>
             </div>
-            <div className="hidden h-8 w-px bg-white/12 md:block" />
+            <div className="hidden h-8 w-px bg-[rgba(15,23,42,0.1)] md:block" />
             <div className="flex flex-col items-center gap-1 text-center">
               <Globe size={18} className="text-indigo-light" />
-              <span className="stat-number font-display text-[22px] font-bold text-white">5</span>
-              <span className="max-w-[80px] text-center text-[11px] text-white/50">Continents Reached</span>
+              <span className="stat-number font-display text-[22px] font-bold text-dark-hero">5</span>
+              <span className="max-w-[80px] text-center text-[11px] text-text-secondary">Continents Reached</span>
             </div>
           </div>
         </div>
 
         <div className="hero-item mt-12 w-full">
           <div className="relative overflow-hidden rounded-2xl px-5 py-4 md:px-8 md:py-5">
-            <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(120deg,rgba(255,255,255,0.12)_0%,rgba(255,255,255,0.03)_35%,rgba(255,255,255,0.01)_100%)]" />
-            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.10),transparent_70%)]" />
-            <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-16 bg-gradient-to-r from-[rgba(15,23,42,0.6)] to-transparent" />
-            <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-16 bg-gradient-to-l from-[rgba(15,23,42,0.6)] to-transparent" />
-            <p className="relative mb-5 text-center text-[13px] tracking-[0.02em] text-white/70">
+            <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(120deg,rgba(79,70,229,0.08)_0%,rgba(20,184,166,0.04)_45%,rgba(255,255,255,0.25)_100%)]" />
+            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(79,70,229,0.10),transparent_70%)]" />
+            <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-16 bg-gradient-to-r from-[#F8FAFC] to-transparent" />
+            <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-16 bg-gradient-to-l from-[#F8FAFC] to-transparent" />
+            <p className="relative mb-5 text-center text-[13px] tracking-[0.02em] text-text-secondary">
               Trusted by learners and leading companies worldwide
             </p>
             <div className="relative flex flex-wrap items-center justify-center gap-x-8 gap-y-4 lg:flex-nowrap lg:justify-between lg:gap-x-10">
               {companies.map((company) => (
                 <span
                   key={company}
-                  className={`cursor-default whitespace-nowrap text-[18px] text-white/75 transition-colors duration-200 hover:text-white ${company === 'Infosys' ? 'font-bold [font-family:var(--font-display)]' : company === 'accenture' ? 'font-normal' : 'font-bold'}`}
+                  className={`cursor-default whitespace-nowrap text-[18px] text-dark-hero/75 transition-colors duration-200 hover:text-dark-hero ${company === 'Infosys' ? 'font-bold [font-family:var(--font-display)]' : company === 'accenture' ? 'font-normal' : 'font-bold'}`}
                 >
                   {company}
                 </span>

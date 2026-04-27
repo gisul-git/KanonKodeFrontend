@@ -164,3 +164,8 @@ video {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
+
+/* Timeline line origin fix */
+.timeline-steps .origin-top {
+  transform-origin: top center;
+}
