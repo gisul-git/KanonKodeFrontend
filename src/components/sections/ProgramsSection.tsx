@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
 import {
   Code2, ShieldCheck, Bot, Cloud, BarChart2, Brain, Layers,
-  Clock, FolderOpen, BadgeCheck, Award, ArrowRight,
+  Clock, FolderOpen, BadgeCheck, Award, ArrowRight, ChevronLeft, ChevronRight,
   type LucideIcon,
 } from 'lucide-react'
 import { gsap } from '@/lib/gsap-init'
@@ -159,14 +159,19 @@ function ProgramCard({ course }: { course: Course }) {
 export default function ProgramsSection() {
   const [activeTab, setActiveTab] = useState('All Programs')
   const sectionRef = useRef<HTMLElement>(null)
+  const cardsRef = useRef<HTMLDivElement>(null)
 
   const filtered = activeTab === 'All Programs'
     ? courses
     : courses.filter(c => c.category === activeTab)
 
-  const loopCards = filtered.length < 4
-    ? [...filtered, ...filtered, ...filtered]
-    : [...filtered, ...filtered]
+  const scrollCards = (dir: 'left' | 'right') => {
+    if (!cardsRef.current) return
+    cardsRef.current.scrollBy({
+      left: dir === 'left' ? -380 : 380,
+      behavior: 'smooth',
+    })
+  }
 
   useEffect(() => {
     gsap.fromTo('.prog-heading',
@@ -217,57 +222,59 @@ export default function ProgramsSection() {
           </a>
         </div>
 
-        <div className="flex items-center gap-2 flex-wrap mb-10">
-          {TABS.map(tab => (
+        <div className="mb-10 flex items-center justify-between gap-4">
+          <div className="flex items-center gap-2 flex-wrap">
+            {TABS.map(tab => (
+              <button
+                key={tab}
+                onClick={() => setActiveTab(tab)}
+                className={cn(
+                  'px-5 py-2.5 rounded-full text-[14px] font-medium',
+                  'transition-all duration-200 border',
+                  activeTab === tab
+                    ? 'bg-indigo-main text-white border-indigo-main shadow-md'
+                    : 'bg-white text-text-secondary'
+                      + ' border-[rgba(99,102,241,0.2)]'
+                      + ' hover:border-indigo-main hover:text-indigo-main',
+                )}
+              >
+                {tab}
+              </button>
+            ))}
+          </div>
+          <div className="flex items-center gap-2 flex-shrink-0">
             <button
-              key={tab}
-              onClick={() => setActiveTab(tab)}
-              className={cn(
-                'px-5 py-2.5 rounded-full text-[14px] font-medium',
-                'transition-all duration-200 border',
-                activeTab === tab
-                  ? 'bg-indigo-main text-white border-indigo-main shadow-md'
-                  : 'bg-white text-text-secondary'
-                    + ' border-[rgba(99,102,241,0.2)]'
-                    + ' hover:border-indigo-main hover:text-indigo-main',
-              )}
+              type="button"
+              onClick={() => scrollCards('left')}
+              aria-label="Scroll programs left"
+              className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[rgba(99,102,241,0.2)] bg-white text-indigo-main transition-all duration-200 hover:bg-bg-tinted"
             >
-              {tab}
+              <ChevronLeft size={18} />
             </button>
-          ))}
+            <button
+              type="button"
+              onClick={() => scrollCards('right')}
+              aria-label="Scroll programs right"
+              className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[rgba(99,102,241,0.2)] bg-white text-indigo-main transition-all duration-200 hover:bg-bg-tinted"
+            >
+              <ChevronRight size={18} />
+            </button>
+          </div>
         </div>
       </div>
 
-      <div className="relative overflow-hidden"
+      <div
+        className="relative overflow-hidden"
         style={{
-          paddingLeft: 'max(24px, calc((100vw - 1280px) / 2 + 48px))',
-        }}>
-        <div className="absolute left-0 top-0 bottom-0 z-10 pointer-events-none"
-          style={{
-            width: 'max(24px, calc((100vw - 1280px) / 2 + 48px))',
-            background: 'white',
-          }} />
-        <div className="absolute right-0 top-0 bottom-0 w-24 z-10
-            pointer-events-none"
-            style={{
-              background: 'linear-gradient(to left, white 20%, transparent)',
-            }} />
-
+          paddingLeft: 'max(0px, calc((100vw - 1280px) / 2 + 2px))',
+        }}
+      >
         <div
-          className="flex h-full items-stretch gap-4 sm:gap-5"
-          style={{
-            animation: 'cardsScroll 42s linear infinite',
-            width: 'max-content',
-          }}
-          onMouseEnter={e => {
-            (e.currentTarget as HTMLElement).style.animationPlayState = 'paused'
-          }}
-          onMouseLeave={e => {
-            (e.currentTarget as HTMLElement).style.animationPlayState = 'running'
-          }}
+          ref={cardsRef}
+          className="flex h-full items-stretch gap-4 overflow-x-auto pr-1 sm:gap-5 sm:pr-3 lg:pr-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
-          {loopCards.map((course, i) => (
-            <ProgramCard key={`${course.id}-${i}`} course={course} />
+          {filtered.map((course) => (
+            <ProgramCard key={course.id} course={course} />
           ))}
         </div>
       </div>

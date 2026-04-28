@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,700&family=DM+Sans:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,700&family=Inter:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -31,7 +31,7 @@
 
   /* Typography */
   --font-display: 'Fraunces', Georgia, serif;
-  --font-body: 'DM Sans', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
 }
 
 * {
@@ -168,4 +168,45 @@ video {
 /* Timeline line origin fix */
 .timeline-steps .origin-top {
   transform-origin: top center;
+}
+
+/* Global horizontal spacing standardization */
+[class~="max-w-[1280px]"] {
+  max-width: 1400px !important;
+}
+
+[class~="max-w-[1280px]"][class~="px-6"] {
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+}
+
+@media (min-width: 1024px) {
+  [class~="max-w-[1280px]"][class~="lg:px-12"] {
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+  }
+
+  [class~="max-w-[1280px]"][class~="lg:px-16"] {
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+  }
+}
+
+/* Standard vertical rhythm across non-hero sections */
+section[class*="py-20"],
+section[class*="py-24"],
+section[class*="py-28"],
+section[class*="py-32"] {
+  padding-top: 4.5rem !important;
+  padding-bottom: 4.5rem !important;
+}
+
+@media (min-width: 1024px) {
+  section[class*="lg:py-20"],
+  section[class*="lg:py-24"],
+  section[class*="lg:py-28"],
+  section[class*="lg:py-32"] {
+    padding-top: 6rem !important;
+    padding-bottom: 6rem !important;
+  }
 }

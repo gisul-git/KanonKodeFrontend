@@ -1,6 +1,5 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import { ArrowRight, Globe, Star, Users, Zap } from 'lucide-react'
 import { useEffect } from 'react'
 import { gsap } from '@/lib/gsap-init'
@@ -76,30 +75,24 @@ export default function HeroSection() {
           </div>
 
           <div className="hero-item mt-6">
-            <h1 className="text-[clamp(3rem,7vw,6rem)] font-black leading-[1] tracking-[-0.03em] [font-family:var(--font-display)]">
+            <h1 className="font-display font-bold leading-[1.03] text-dark-hero" style={{ fontSize: 'clamp(2.8rem, 6vw, 4.75rem)' }}>
               <span className="block text-dark-hero">Learn Today.</span>
               <span className="block text-dark-hero">Build Real Skills.</span>
-              <span className="relative block text-indigo-light">
-                Get Hired<span className="text-teal-main">.</span>
-                <span className="absolute -bottom-2 left-0 h-[14px] w-[72%]">
-                  <svg viewBox="0 0 300 12" preserveAspectRatio="none" className="h-full w-full">
-                    <motion.path
-                      d="M2 9 C50 3, 100 11, 150 6 S250 3, 298 8"
-                      stroke="#6366F1"
-                      strokeWidth="3"
-                      fill="none"
-                      strokeLinecap="round"
-                      initial={{ pathLength: 0 }}
-                      animate={{ pathLength: 1 }}
-                      transition={{ duration: 1, delay: 0.8, ease: 'easeInOut' }}
-                    />
-                  </svg>
-                </span>
+              <span
+                className="block"
+                style={{
+                  background: 'linear-gradient(135deg, #818CF8 0%, #14B8A6 100%)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
+                }}
+              >
+                Get Hired
               </span>
             </h1>
           </div>
 
-          <p className="hero-item mt-6 max-w-[480px] text-[17px] leading-[1.65] text-text-secondary">
+          <p className="hero-item mt-6 max-w-[520px] text-[16px] leading-relaxed text-text-secondary">
             Live cohort-based learning with real projects, industry mentorship, and career support — from <strong className="font-bold text-dark-hero">Day 1</strong> to your dream job.
           </p>
 
