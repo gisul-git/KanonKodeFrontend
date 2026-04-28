@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from 'next'
-import Footer from '@/components/layout/Footer'
-import Navbar from '@/components/layout/Navbar'
-import TopBar from '@/components/layout/TopBar'
+import AppShell from '@/components/layout/AppShell'
+import { AuthModalProvider } from '@/context/AuthModalContext'
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -33,10 +32,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="font-body">
-        <TopBar />
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
+        <AuthModalProvider>
+          <AppShell>{children}</AppShell>
+        </AuthModalProvider>
       </body>
     </html>
   )

@@ -155,7 +155,7 @@ export default function OurStory() {
               >
                 <div className="mb-2 flex items-start gap-3">
                   <div className="mt-0.5 select-none font-display font-black leading-none" style={{ fontSize: '30px', color: '#4F46E5', lineHeight: '0.8' }}>
-                    "
+                    &quot;
                   </div>
                   <p className="font-display text-[13px] font-bold leading-[1.2] text-dark-hero sm:text-[15px] lg:text-[15px]">
                     We don&apos;t just teach tech.

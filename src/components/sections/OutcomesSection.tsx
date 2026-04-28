@@ -100,7 +100,7 @@ function TestimonialPhotoCard({ t }: { t: PhotoTestimonial }) {
             style={{ backgroundColor: accent, width: '2rem' }}
           />
           <p className="mb-5 line-clamp-3 text-[14px] leading-relaxed text-white" style={{ textShadow: '0 1px 4px rgba(0,0,0,0.5)' }}>
-            "{t.quote}"
+            &quot;{t.quote}&quot;
           </p>
 
           <div className="flex items-center gap-3">

@@ -136,7 +136,7 @@ export default function WhatAreWorkshops() {
 
           <div className="waw-image relative w-full lg:w-[55%]">
             <div className="relative h-[320px] w-full overflow-hidden rounded-2xl sm:h-[420px]">
-              <Image src="/images/workshop-laptop.png" alt="Kanonkode workshop — code editor with Kanonkode mug" fill className="object-cover object-center" priority />
+              <Image src="/images/workshopmethodology.png" alt="Kanonkode workshop methodology session" fill className="object-cover object-center" priority />
 
               <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(79,70,229,0.15) 0%, transparent 50%)' }} />
 
@@ -151,7 +151,7 @@ export default function WhatAreWorkshops() {
               >
                 <div className="mb-2 flex items-start gap-3">
                   <div className="mt-0.5 select-none font-display font-black leading-none" style={{ fontSize: '30px', color: '#4F46E5', lineHeight: '0.8' }}>
-                    "
+                    &quot;
                   </div>
                   <p className="font-display text-[13px] font-bold leading-[1.2] text-dark-hero sm:text-[15px] lg:text-[15px]">
                     You don&apos;t watch tutorials here.

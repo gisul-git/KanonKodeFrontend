@@ -192,7 +192,7 @@ export default function OurValues() {
           <div className="mb-4 flex items-center justify-center gap-6">
             <div className="h-px max-w-[120px] flex-1" style={{ background: 'rgba(99,102,241,0.15)' }} />
             <span className="select-none font-display text-[34px] font-black leading-none" style={{ color: '#4F46E5', lineHeight: '0.8' }}>
-              "
+              &quot;
             </span>
             <div className="h-px max-w-[120px] flex-1" style={{ background: 'rgba(99,102,241,0.15)' }} />
           </div>

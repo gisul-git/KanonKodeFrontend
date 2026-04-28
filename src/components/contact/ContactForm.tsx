@@ -1,15 +1,13 @@
 'use client'
 
 import { useState } from 'react'
-import { ArrowRight, CheckCircle2, Clock, Star, Users } from 'lucide-react'
+import { ArrowRight, Building2, CheckCircle2, Clock, GraduationCap, Lock, Star, Users } from 'lucide-react'
 
-type Category = 'student' | 'institution' | 'partner' | 'press'
+type Category = 'student' | 'institution'
 
-const categories: { id: Category; emoji: string; label: string }[] = [
-  { id: 'student', emoji: '🎓', label: 'Student' },
-  { id: 'institution', emoji: '🏢', label: 'Institution' },
-  { id: 'partner', emoji: '💼', label: 'Partner' },
-  { id: 'press', emoji: '📰', label: 'Press/Media' },
+const categories: { id: Category; label: string; icon: typeof GraduationCap }[] = [
+  { id: 'student', label: 'Student', icon: GraduationCap },
+  { id: 'institution', label: 'Institution', icon: Building2 },
 ]
 
 const courseOptions = [
@@ -20,8 +18,6 @@ const courseOptions = [
   'AI Data Analyst',
   'Not sure yet — need guidance',
 ]
-
-const partnerTypes = ['Hiring Partner', 'Content / Curriculum Partner', 'Technology Partner', 'Investment / Funding', 'Other']
 
 const inputCls = `w-full px-4 py-3.5 rounded-xl text-[14px]
   text-dark-hero outline-none transition-all duration-200`
@@ -55,10 +51,6 @@ export default function ContactForm() {
     course: '',
     institution: '',
     studentCount: '',
-    company: '',
-    partnerType: '',
-    publication: '',
-    story: '',
   })
 
   const set =
@@ -83,7 +75,7 @@ export default function ContactForm() {
   }
 
   return (
-    <section className="bg-white py-20 lg:py-28">
+    <section id="contact-form-section" className="bg-white py-20 lg:py-28">
       <div className="max-w-[1280px] mx-auto px-6 lg:px-12">
         <div className="flex flex-col lg:flex-row gap-16 items-start">
           <div className="flex-1 w-full">
@@ -116,7 +108,7 @@ export default function ContactForm() {
                     boxShadow: category === c.id ? '0 4px 12px rgba(79,70,229,0.3)' : 'none',
                   }}
                 >
-                  <span>{c.emoji}</span>
+                  <c.icon size={16} />
                   {c.label}
                 </button>
               ))}
@@ -172,39 +164,6 @@ export default function ContactForm() {
                   </div>
                 )}
 
-                {category === 'partner' && (
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                    <div>
-                      <label className="block text-[13px] font-semibold text-dark-hero mb-2">Company Name *</label>
-                      <input type="text" required placeholder="Your company" className={inputCls} {...fProps('company')} />
-                    </div>
-                    <div>
-                      <label className="block text-[13px] font-semibold text-dark-hero mb-2">Partnership Type</label>
-                      <select className={inputCls} {...fProps('partnerType')}>
-                        <option value="">Select type...</option>
-                        {partnerTypes.map((o) => (
-                          <option key={o} value={o}>
-                            {o}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-                  </div>
-                )}
-
-                {category === 'press' && (
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                    <div>
-                      <label className="block text-[13px] font-semibold text-dark-hero mb-2">Publication Name *</label>
-                      <input type="text" required placeholder="e.g. TechCrunch, YourStory" className={inputCls} {...fProps('publication')} />
-                    </div>
-                    <div>
-                      <label className="block text-[13px] font-semibold text-dark-hero mb-2">Story Brief</label>
-                      <input type="text" placeholder="One-line story angle" className={inputCls} {...fProps('story')} />
-                    </div>
-                  </div>
-                )}
-
                 <div>
                   <label className="block text-[13px] font-semibold text-dark-hero mb-2">Your Message *</label>
                   <textarea
@@ -213,20 +172,17 @@ export default function ContactForm() {
                     placeholder={
                       category === 'student'
                         ? 'Tell us about your background and what you want to achieve...'
-                        : category === 'institution'
-                          ? 'Tell us about your students and what you need...'
-                          : category === 'partner'
-                            ? 'Describe the partnership opportunity...'
-                            : 'Tell us about your story and deadline...'
+                        : 'Tell us about your students and what you need...'
                     }
                     className={`${inputCls} resize-none`}
                     {...fProps('message')}
                   />
                 </div>
 
-                <p className="text-[12px]" style={{ color: '#94A3B8' }}>
-                  🔒 Your information is private and never shared with third parties.
-                </p>
+                <div className="flex items-center gap-2 text-[12px]" style={{ color: '#94A3B8' }}>
+                  <Lock size={13} />
+                  <span>Your information is private and never shared with third parties.</span>
+                </div>
 
                 <button
                   type="submit"
@@ -325,8 +281,8 @@ export default function ContactForm() {
                 <a href="mailto:hello@kanonkode.com" className="text-[13px] font-medium" style={{ color: '#4F46E5' }}>
                   hello@kanonkode.com
                 </a>
-                <a href="mailto:partnerships@kanonkode.com" className="text-[13px] font-medium" style={{ color: '#14B8A6' }}>
-                  partnerships@kanonkode.com
+                <a href="mailto:careers@kanonkode.com" className="text-[13px] font-medium" style={{ color: '#14B8A6' }}>
+                  careers@kanonkode.com
                 </a>
               </div>
             </div>

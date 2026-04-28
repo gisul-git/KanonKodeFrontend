@@ -49,8 +49,42 @@ export default function ContactHero() {
   }, [])
 
   return (
-    <section className="relative overflow-hidden" style={{ background: '#0F172A', paddingBottom: 0 }}>
+    <section
+      className="relative overflow-hidden"
+      style={{
+        paddingBottom: 0,
+        backgroundImage: "url('/images/contactus.png')",
+        backgroundSize: 'cover',
+        backgroundPosition: 'right center',
+        backgroundRepeat: 'no-repeat',
+      }}
+    >
       <div className="absolute inset-0 pointer-events-none">
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            // background: 'linear-gradient(180deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.26) 65%, rgba(255,255,255,0.35) 100%)',
+          }}
+        />
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            background: 'linear-gradient(90deg, rgba(255,255,255,0.94) 0%, rgba(255,255,255,0.9) 42%, rgba(255,255,255,0.68) 56%, rgba(255,255,255,0.18) 66%, rgba(255,255,255,0) 76%)',
+          }}
+        />
+        <div
+          style={{
+            position: 'absolute',
+            top: 0,
+            bottom: 0,
+            left: '54%',
+            width: '28%',
+            background: 'linear-gradient(105deg, rgba(255,255,255,0.62) 0%, rgba(255,255,255,0.32) 58%, rgba(255,255,255,0) 100%)',
+            clipPath: 'polygon(0 0, 72% 0, 100% 100%, 0 100%)',
+          }}
+        />
         <div
           style={{
             position: 'absolute',
@@ -59,7 +93,7 @@ export default function ContactHero() {
             width: '500px',
             height: '500px',
             borderRadius: '50%',
-            background: 'radial-gradient(circle, rgba(79,70,229,0.18), transparent 70%)',
+            background: 'radial-gradient(circle, rgba(79,70,229,0.1), transparent 70%)',
             filter: 'blur(70px)',
           }}
         />
@@ -71,39 +105,28 @@ export default function ContactHero() {
             width: '400px',
             height: '400px',
             borderRadius: '50%',
-            background: 'radial-gradient(circle, rgba(20,184,166,0.1), transparent 70%)',
+            background: 'radial-gradient(circle, rgba(20,184,166,0.06), transparent 70%)',
             filter: 'blur(60px)',
-          }}
-        />
-        <div
-          style={{
-            position: 'absolute',
-            inset: 0,
-            backgroundImage: `
-            linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px)
-          `,
-            backgroundSize: '48px 48px',
           }}
         />
       </div>
 
-      <div className="relative z-10 max-w-[1280px] mx-auto px-6 lg:px-12 pt-[140px] pb-20 text-center">
+      <div className="relative z-10 max-w-[1280px] mx-auto px-6 lg:px-12 pt-[132px] pb-10">
         <div
           className="ch2-item inline-flex items-center gap-2 rounded-full px-4 py-2 mb-6"
           style={{
-            background: 'rgba(255,255,255,0.06)',
-            border: '1px solid rgba(255,255,255,0.12)',
+            background: 'rgba(255,255,255,0.86)',
+            border: '1px solid rgba(15,23,42,0.1)',
           }}
         >
           <span className="w-2 h-2 rounded-full bg-teal-main animate-pulse flex-shrink-0" />
-          <span className="text-[12px] font-medium" style={{ color: 'rgba(255,255,255,0.75)' }}>
+          <span className="text-[12px] font-medium" style={{ color: 'rgba(15,23,42,0.72)' }}>
             We typically respond within 24 hours
           </span>
         </div>
 
-        <h1 className="ch2-item font-display font-bold text-white leading-[1.05] mb-5" style={{ fontSize: 'clamp(2.8rem, 6vw, 5rem)' }}>
-          Let&apos;s{' '}
+        <h1 className="ch2-item font-display font-bold leading-[0.96] mb-4 max-w-[700px]" style={{ fontSize: 'clamp(2.7rem, 6vw, 5.3rem)', color: '#0F172A' }}>
+          Let&apos;s Start a{' '}
           <span
             style={{
               background: 'linear-gradient(135deg, #818CF8 0%, #14B8A6 100%)',
@@ -112,26 +135,27 @@ export default function ContactHero() {
               backgroundClip: 'text',
             }}
           >
-            Start a Conversation
+            Conversation
           </span>
         </h1>
 
-        <p className="ch2-item text-[17px] leading-relaxed mb-16 max-w-xl mx-auto" style={{ color: 'rgba(255,255,255,0.55)' }}>
-          Whether you&apos;re a student, institution, or partner — we&apos;re here to help. Pick the fastest way to reach us.
+        <p className="ch2-item text-[17px] leading-relaxed mb-10 max-w-[510px]" style={{ color: 'rgba(15,23,42,0.7)' }}>
+          Whether you&apos;re a student or institution — we&apos;re here to help. Pick the fastest way to reach us.
         </p>
 
-        <div className="ch2-item grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-4xl mx-auto">
+        <div className="ch2-item grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-[960px]">
           {quickContacts.map((c, i) => {
             const Icon = c.icon
             return (
               <a
                 key={i}
                 href={c.href}
-                className="group rounded-2xl p-5 text-left flex flex-col gap-3 transition-all duration-300 hover:-translate-y-1"
+                className="group rounded-2xl p-5 text-left flex flex-col gap-3 transition-all duration-300 hover:-translate-y-1 min-h-[130px]"
                 style={{
-                  background: 'rgba(255,255,255,0.05)',
-                  border: '1px solid rgba(255,255,255,0.1)',
+                  background: 'rgba(255,255,255,0.92)',
+                  border: '1px solid rgba(15,23,42,0.08)',
                   backdropFilter: 'blur(12px)',
+                  boxShadow: '0 12px 34px rgba(15,23,42,0.08)',
                 }}
               >
                 <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: c.bg }}>
@@ -141,8 +165,10 @@ export default function ContactHero() {
                   <p className="text-[11px] font-bold tracking-wider uppercase mb-1" style={{ color: c.color }}>
                     {c.label}
                   </p>
-                  <p className="text-white font-semibold text-[14px] leading-tight mb-0.5 group-hover:underline">{c.value}</p>
-                  <p className="text-[12px]" style={{ color: 'rgba(255,255,255,0.4)' }}>
+                  <p className="font-semibold text-[14px] leading-tight mb-0.5 group-hover:underline" style={{ color: '#0F172A' }}>
+                    {c.value}
+                  </p>
+                  <p className="text-[12px]" style={{ color: 'rgba(15,23,42,0.58)' }}>
                     {c.sub}
                   </p>
                 </div>
@@ -152,7 +178,7 @@ export default function ContactHero() {
         </div>
       </div>
 
-      <div className="h-16" style={{ background: 'linear-gradient(to bottom, #0F172A, #ffffff)' }} />
+      <div className="h-16" style={{ background: 'linear-gradient(to bottom, rgba(255,255,255,0.4), #ffffff)' }} />
     </section>
   )
 }

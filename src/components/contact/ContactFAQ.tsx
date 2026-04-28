@@ -7,7 +7,7 @@ import { ArrowRight, ChevronDown } from 'lucide-react'
 const faqs = [
   {
     q: 'How quickly will I get a response?',
-    a: 'Student enquiries are answered within 12 hours. Partnership and institutional requests within 2 business days. Press and career enquiries within 3 business days.',
+    a: 'Student enquiries are answered within 12 hours. Institution requests are answered within 2 business days. Career enquiries are answered within 3 business days.',
   },
   {
     q: "I'm not sure which programme is right for me. What should I do?",
@@ -18,8 +18,8 @@ const faqs = [
     a: "Yes! We're based in Bengaluru, Karnataka. Please email us at hello@kanonkode.com to schedule an in-person visit and we'll confirm a time that works.",
   },
   {
-    q: 'I want to hire Kanonkode graduates. Who do I contact?',
-    a: 'Email our partnerships team at partnerships@kanonkode.com. We run a dedicated Hire from Us programme where companies get access to our top-performing graduates.',
+    q: 'I want to explore institution collaboration. Who do I contact?',
+    a: 'Email us at hello@kanonkode.com. Our institution support team will help you with onboarding, curriculum integration, and workshop planning.',
   },
   {
     q: 'Do you have a WhatsApp number for quick queries?',

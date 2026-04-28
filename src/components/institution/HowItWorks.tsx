@@ -48,7 +48,7 @@ export default function InstitutionHowItWorks() {
   }, [])
 
   return (
-    <section ref={ref} className="py-24 lg:py-32" style={{ background: '#F8FAFC' }}>
+    <section ref={ref} className="py-24 lg:py-32" style={{ background: 'linear-gradient(135deg, #F5F8FF 0%, #FFFFFF 50%, #F2FDF9 100%)' }}>
       <div className="max-w-[1280px] mx-auto px-6 lg:px-12">
         <div className="text-center mb-16">
           <p className="text-teal-main font-semibold text-[11px] tracking-[0.15em] uppercase mb-3">The Process</p>
@@ -84,11 +84,8 @@ export default function InstitutionHowItWorks() {
             return (
               <div
                 key={i}
-                className="ihiw-card group relative bg-white rounded-2xl p-7 flex flex-col items-start border transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover"
-                style={{
-                  border: '1px solid rgba(99,102,241,0.1)',
-                  boxShadow: '0 2px 16px rgba(99,102,241,0.05)',
-                }}
+                className="ihiw-card group relative bg-white rounded-3xl p-7 flex flex-col items-start transition-all duration-300 hover:-translate-y-1"
+                style={{ boxShadow: '0 4px 26px rgba(99,102,241,0.08), 0 1px 4px rgba(0,0,0,0.04)' }}
               >
                 <div className="flex items-center justify-between w-full mb-6">
                   <div

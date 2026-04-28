@@ -6,6 +6,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
+import { useAuthModal } from '@/context/AuthModalContext'
 import { cn } from '@/lib/utils'
 
 const links = [
@@ -162,7 +163,7 @@ function CourseDropdown({ open }: { open: boolean }) {
   )
 }
 
-function MobileDrawer({ open, onClose }: { open: boolean; onClose: () => void }) {
+function MobileDrawer({ open, onClose, onLogin }: { open: boolean; onClose: () => void; onLogin: () => void }) {
   return (
     <AnimatePresence>
       {open && (
@@ -207,7 +208,13 @@ function MobileDrawer({ open, onClose }: { open: boolean; onClose: () => void })
               <Link href="/contact" onClick={onClose} className="block w-full rounded-lg border-[1.5px] border-indigo-main px-4 py-2.5 text-center text-sm font-medium text-indigo-main transition-all duration-200 hover:bg-bg-tinted">
                 Contact Us
               </Link>
-              <button className="flex w-full items-center justify-center gap-2 rounded-lg bg-teal-main px-5 py-2.5 text-sm font-semibold text-white transition-all duration-200 hover:bg-teal-hover hover:shadow-teal">
+              <button
+                onClick={() => {
+                  onClose()
+                  onLogin()
+                }}
+                className="flex w-full items-center justify-center gap-2 rounded-lg bg-teal-main px-5 py-2.5 text-sm font-semibold text-white transition-all duration-200 hover:bg-teal-hover hover:shadow-teal"
+              >
                 Login <UserCircle2 size={16} />
               </button>
             </div>
@@ -220,6 +227,7 @@ function MobileDrawer({ open, onClose }: { open: boolean; onClose: () => void })
 
 export default function Navbar() {
   const [lightThemeNav, setLightThemeNav] = useState(false)
+  const [isAtTop, setIsAtTop] = useState(true)
   const [dropdownOpen, setDropdownOpen] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [searchOpen, setSearchOpen] = useState(false)
@@ -228,10 +236,14 @@ export default function Navbar() {
   const searchInputRef = useRef<HTMLInputElement>(null)
   const router = useRouter()
   const pathname = usePathname()
+  const { openModal } = useAuthModal()
   const isLight = lightThemeNav
-  const isDarkTransparentTop = (pathname === '/' || pathname === '/about' || pathname === '/workshop' || pathname === '/scholar-challenge' || pathname === '/for-institution') && !isLight
+  const isWorkshopFirstSection = pathname === '/workshop' && !isLight
+  const useHeroBlurNav =
+    pathname === '/' || pathname === '/about' || pathname === '/scholar-challenge' || pathname === '/workshop' || pathname === '/for-institution' || pathname === '/contact'
+  const isDarkTransparentTop = (pathname === '/' || pathname === '/about' || pathname === '/workshop' || pathname === '/scholar-challenge' || pathname === '/for-institution' || pathname === '/contact') && !isLight
   const useDarkNavText = isLight || isDarkTransparentTop
-  const useDarkLogo = isLight || pathname === '/' || pathname === '/about' || pathname === '/workshop' || pathname === '/scholar-challenge' || pathname === '/for-institution'
+  const useDarkLogo = isLight || pathname === '/' || pathname === '/about' || pathname === '/workshop' || pathname === '/scholar-challenge' || pathname === '/for-institution' || pathname === '/contact'
   const filtered =
     searchQuery.trim().length === 0
       ? searchItems.slice(0, 6)
@@ -239,14 +251,25 @@ export default function Navbar() {
 
   useEffect(() => {
     const onScroll = () => {
+      setIsAtTop(window.scrollY <= 4)
       const triggerSelector =
-        pathname === '/about' ? '#story' : pathname === '/scholar-challenge' ? '.mandate-left' : '.whatk-section'
+        pathname === '/about'
+          ? '#story'
+          : pathname === '/scholar-challenge'
+            ? '.mandate-left'
+            : pathname === '/workshop'
+              ? '#upcoming'
+              : pathname === '/for-institution'
+                ? '#what-we-offer'
+                : pathname === '/contact'
+                  ? '#contact-form-section'
+                : '.whatk-section'
       const trigger = document.querySelector(triggerSelector) as HTMLElement | null
       if (!trigger) {
         setLightThemeNav(pathname === '/about' || pathname === '/scholar-challenge' ? false : window.scrollY >= 80)
         return
       }
-      const switchPoint = trigger.offsetTop - 68
+      const switchPoint = pathname === '/workshop' || pathname === '/contact' ? trigger.offsetTop : trigger.offsetTop - 68
       setLightThemeNav(window.scrollY >= switchPoint)
     }
     onScroll()
@@ -305,8 +328,14 @@ export default function Navbar() {
           'fixed top-0 z-40 h-16 w-full transition-all duration-300 sm:h-[68px]',
           isLight
             ? 'border-b border-[rgba(15,23,42,0.08)] bg-white shadow-[0_8px_24px_rgba(15,23,42,0.08)]'
-            : pathname === '/' || pathname === '/about' || pathname === '/workshop' || pathname === '/scholar-challenge' || pathname === '/for-institution'
-              ? 'border-b border-transparent bg-transparent'
+            : isWorkshopFirstSection
+              ? isAtTop
+                ? 'border-b border-transparent bg-transparent'
+                : 'border-b border-[rgba(255,255,255,0.45)] bg-white/55 backdrop-blur-md'
+            : useHeroBlurNav
+              ? isAtTop
+                ? 'border-b border-transparent bg-transparent'
+                : 'border-b border-[rgba(255,255,255,0.25)] bg-white/35 backdrop-blur-md'
               : 'border-b border-transparent bg-dark-hero/10 backdrop-blur-sm',
         )}
       >
@@ -377,7 +406,7 @@ export default function Navbar() {
               >
                 Contact Us
               </Link>
-              <button className="flex items-center gap-2 rounded-lg bg-teal-main px-5 py-2 text-sm font-semibold text-white transition-all duration-200 hover:bg-teal-hover hover:shadow-teal">
+              <button onClick={() => openModal('login')} className="flex items-center gap-2 rounded-lg bg-teal-main px-5 py-2 text-sm font-semibold text-white transition-all duration-200 hover:bg-teal-hover hover:shadow-teal">
                 Login <UserCircle2 size={16} />
               </button>
             </div>
@@ -527,7 +556,7 @@ export default function Navbar() {
         )}
       </AnimatePresence>
 
-      <MobileDrawer open={mobileOpen} onClose={() => setMobileOpen(false)} />
+      <MobileDrawer open={mobileOpen} onClose={() => setMobileOpen(false)} onLogin={() => openModal('login')} />
     </>
   )
 }

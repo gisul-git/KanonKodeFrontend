@@ -17,9 +17,10 @@ const institutions = [
 
 export default function PartnerLogos() {
   const items = [...institutions, ...institutions]
+  const logoColors = ['4F46E5', '14B8A6', '8B5CF6', 'F59E0B', '0EA5E9', '10B981']
 
   return (
-    <section className="bg-white py-16 overflow-hidden">
+    <section className="bg-white py-20 overflow-hidden">
       <div className="max-w-[1280px] mx-auto px-6 lg:px-12 mb-8">
         <p className="text-center text-[12px] font-semibold tracking-[0.15em] uppercase" style={{ color: '#94A3B8' }}>
           Trusted by institutions across India
@@ -38,15 +39,12 @@ export default function PartnerLogos() {
         >
           {items.map((name, i) => (
             <div key={i} className="flex items-center gap-3 flex-shrink-0 px-2">
-              <div
-                className="w-8 h-8 rounded-lg flex items-center justify-center text-white font-bold text-[12px] flex-shrink-0"
-                style={{
-                  background: `hsl(${(i * 37) % 360}, 65%, 55%)`,
-                  opacity: 0.7,
-                }}
-              >
-                {name[0]}
-              </div>
+              <img
+                src={`https://dummyimage.com/48x48/${logoColors[i % logoColors.length]}/ffffff.png&text=${encodeURIComponent(name[0])}`}
+                alt={`${name} logo`}
+                className="w-8 h-8 rounded-lg object-cover flex-shrink-0"
+                loading="lazy"
+              />
               <span className="font-body font-semibold text-[15px] whitespace-nowrap" style={{ color: '#475569' }}>
                 {name}
               </span>

@@ -37,7 +37,7 @@ export default function InstitutionCTA() {
   }
 
   return (
-    <section id="partner" className="relative overflow-hidden py-24 lg:py-32" style={{ background: '#F8FAFC' }}>
+    <section id="partner" className="relative overflow-hidden py-24 lg:py-32" style={{ background: 'linear-gradient(135deg, #F5F8FF 0%, #FFFFFF 55%, #F2FCF8 100%)' }}>
       <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(90deg, transparent, rgba(79,70,229,0.4) 30%, rgba(20,184,166,0.35) 70%, transparent)' }} />
 
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -189,8 +189,8 @@ export default function InstitutionCTA() {
                     disabled={loading}
                     className="w-full py-4 rounded-xl font-bold text-[15px] text-white flex items-center justify-center gap-2 transition-all duration-200 hover:-translate-y-0.5 disabled:opacity-70 disabled:cursor-not-allowed group"
                     style={{
-                      background: 'linear-gradient(135deg, #4F46E5, #6366F1)',
-                      boxShadow: '0 6px 20px rgba(79,70,229,0.4)',
+                      background: 'linear-gradient(135deg, #4F46E5 0%, #14B8A6 100%)',
+                      boxShadow: '0 6px 20px rgba(79,70,229,0.3)',
                     }}
                   >
                     {loading ? (

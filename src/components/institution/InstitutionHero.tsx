@@ -40,7 +40,7 @@ export default function InstitutionHero() {
 
       <div className="relative z-10 max-w-[1280px] mx-auto px-6 lg:px-12 flex flex-col gap-6 lg:gap-8" style={{ minHeight: '88vh', paddingTop: '120px', paddingBottom: '48px' }}>
         <div className="flex flex-col lg:flex-row items-center gap-12">
-          <div className="w-full lg:w-[75%] flex-shrink-0">
+          <div className="w-full lg:w-[62%] flex-shrink-0">
           <div
             className="ih-item inline-flex items-center gap-2 rounded-full px-4 py-2 mb-7"
             style={{
@@ -55,11 +55,11 @@ export default function InstitutionHero() {
           </div>
 
           <div className="ih-item mb-6">
-            <p className="font-display font-black text-dark-hero uppercase leading-[0.95] whitespace-nowrap" style={{ fontSize: 'clamp(2.2rem, 5vw, 4.2rem)', letterSpacing: '-0.02em' }}>
+            <p className="font-display font-black text-dark-hero uppercase leading-[0.95]" style={{ fontSize: 'clamp(2.2rem, 5vw, 4.2rem)', letterSpacing: '-0.02em' }}>
               Bring Industry-Ready
             </p>
             <p
-              className="font-display font-black uppercase leading-[0.95] whitespace-nowrap"
+              className="font-display font-black uppercase leading-[0.95]"
               style={{
                 fontSize: 'clamp(2.2rem, 5vw, 4.2rem)',
                 letterSpacing: '-0.02em',
