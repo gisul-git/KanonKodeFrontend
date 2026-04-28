@@ -1,7 +1,7 @@
 'use client'
 
 import { AnimatePresence, motion } from 'framer-motion'
-import { ArrowRight, BarChart3, Bot, Briefcase, Building2, ChevronDown, Cloud, Compass, FileText, GraduationCap, Grid2x2, Mail, Menu, Search, Shield, Sparkles, Trophy, UserCircle2, X } from 'lucide-react'
+import { ArrowRight, BarChart3, Bot, Briefcase, Building2, ChevronDown, ChevronLeft, ChevronRight, Cloud, Compass, FileText, GraduationCap, Grid2x2, Mail, Menu, Search, Shield, Sparkles, Trophy, UserCircle2, X } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
@@ -70,7 +70,26 @@ const searchItems = [
   { label: 'Free Career Counselling', type: 'Feature', href: '/#career', icon: Sparkles, iconColor: '#0D9488', iconBg: '#F0FDFA' },
 ]
 
+const exploreCategories = [
+  { icon: Bot, label: 'Artificial Intelligence' },
+  { icon: FileText, label: 'Data & Analytics' },
+  { icon: Cloud, label: 'Cloud & DevOps' },
+  { icon: Shield, label: 'Cyber Security' },
+  { icon: GraduationCap, label: 'Career Programs' },
+  { icon: Briefcase, label: 'Workshops' },
+  { icon: Building2, label: 'Institutions' },
+  { icon: Trophy, label: 'Scholar Challenge' },
+]
+
 function CourseDropdown({ open }: { open: boolean }) {
+  const categoriesRef = useRef<HTMLDivElement>(null)
+
+  const scrollCategories = (dir: 'left' | 'right') => {
+    if (!categoriesRef.current) return
+    const x = dir === 'left' ? -320 : 320
+    categoriesRef.current.scrollBy({ left: x, behavior: 'smooth' })
+  }
+
   return (
     <AnimatePresence>
       {open && (
@@ -81,24 +100,58 @@ function CourseDropdown({ open }: { open: boolean }) {
           transition={{ duration: 0.2, ease: 'easeOut' }}
           className="absolute left-0 top-full z-50 mt-3 w-[min(1120px,calc(100vw-2rem))] rounded-[18px] border border-[rgba(99,102,241,0.1)] bg-white p-5 shadow-[0_22px_60px_rgba(15,23,42,0.18)]"
         >
+          <div className="relative mb-4">
+            <button
+              type="button"
+              onClick={() => scrollCategories('left')}
+              aria-label="Scroll categories left"
+              className="absolute left-0 top-1/2 z-10 -translate-y-1/2 rounded-full border border-[rgba(99,102,241,0.12)] bg-white p-1.5 text-text-secondary shadow-sm transition-colors hover:text-indigo-main"
+            >
+              <ChevronLeft size={15} />
+            </button>
+            <div
+              ref={categoriesRef}
+              className="mx-8 flex items-center gap-2 overflow-x-auto whitespace-nowrap scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+            >
+              {exploreCategories.map((cat) => (
+                <button
+                  key={cat.label}
+                  type="button"
+                  className="inline-flex flex-shrink-0 items-center gap-2 rounded-full border border-[rgba(99,102,241,0.14)] bg-white px-3.5 py-2 text-[12px] font-medium text-text-secondary transition-all duration-150 hover:border-indigo-main/35 hover:text-dark-hero"
+                >
+                  <cat.icon size={14} className="text-indigo-main" />
+                  <span>{cat.label}</span>
+                </button>
+              ))}
+            </div>
+            <button
+              type="button"
+              onClick={() => scrollCategories('right')}
+              aria-label="Scroll categories right"
+              className="absolute right-0 top-1/2 z-10 -translate-y-1/2 rounded-full border border-[rgba(99,102,241,0.12)] bg-white p-1.5 text-text-secondary shadow-sm transition-colors hover:text-indigo-main"
+            >
+              <ChevronRight size={15} />
+            </button>
+          </div>
+
           <div className="grid grid-cols-1 gap-3 xl:grid-cols-[1fr_1fr_1fr_1fr_220px]">
             {courseColumns.map((col) => (
-              <div key={col.title} className="rounded-xl border border-[rgba(99,102,241,0.08)] bg-[#FCFDFE] p-4">
+              <div key={col.title} className="rounded-xl border border-[rgba(99,102,241,0.08)] bg-[#FCFDFE] p-4 flex flex-col min-h-[262px]">
                 <div className="mb-4 flex items-center gap-3">
                   <div className="flex h-10 w-10 items-center justify-center rounded-xl" style={{ background: col.iconBg }}>
                     <col.icon size={19} style={{ color: col.iconColor }} />
                   </div>
-                  <div>
+                  <div className="min-h-[40px]">
                     <p className="text-[12px] font-bold tracking-[0.04em] text-indigo-main">{col.title}</p>
                     <p className="mt-0.5 text-[11px] text-text-secondary">{col.description}</p>
                   </div>
                 </div>
-                <div className="space-y-1.5">
+                <div className="space-y-1.5 flex-1">
                   {col.courses.map((course) => (
                     <Link
                       key={course}
                       href="#"
-                      className="flex items-center justify-between rounded-lg px-2.5 py-2 text-[13px] text-text-secondary transition-all duration-150 hover:bg-bg-tinted hover:text-dark-hero"
+                      className="flex min-h-[38px] items-center justify-between rounded-lg px-2.5 py-2 text-[13px] text-text-secondary transition-all duration-150 hover:bg-bg-tinted hover:text-dark-hero"
                     >
                       {course}
                       <span className="text-text-sub">›</span>
