@@ -36,7 +36,7 @@ export default function HeroSection() {
         alt="KanonKode hero background"
         fill
         priority
-        className="absolute inset-0 object-cover"
+        className="absolute inset-0 object-cover object-[100%_center]"
         style={{ zIndex: 0 }}
       />
 
