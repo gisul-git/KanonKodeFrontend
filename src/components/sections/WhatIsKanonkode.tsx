@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import { motion, useInView } from 'framer-motion'
+import { motion } from 'framer-motion'
 import {
   Briefcase,
   CheckCircle2,
@@ -23,8 +23,6 @@ import { gsap, ScrollTrigger } from '@/lib/gsap-init'
 
 export default function WhatIsKanonkode() {
   const sectionRef = useRef<HTMLElement | null>(null)
-  const hiredRef = useRef<HTMLSpanElement | null>(null)
-  const isInView = useInView(hiredRef, { once: true, margin: '-100px' })
 
   useEffect(() => {
     gsap.fromTo(
@@ -93,33 +91,30 @@ export default function WhatIsKanonkode() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="whatk-section bg-white py-16 sm:py-20 lg:py-24">
+    <section ref={sectionRef} className="whatk-section bg-white py-14 sm:py-16 lg:py-20">
       <div className="mx-auto max-w-[1280px] px-6 lg:px-12">
         <div className="whatk-heading mb-14 max-w-2xl">
-          <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.15em] text-teal-main">What Kanonkode Is</p>
+          <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.15em] text-teal-main">Why KanonKode Works</p>
           <h2 className="font-display font-bold leading-[1.1] text-dark-hero" style={{ fontSize: 'clamp(2.2rem, 4vw, 3.5rem)' }}>
-            Not Just Courses.
-            <br />A System That Gets You{' '}
-            <span ref={hiredRef} className="relative inline-block">
-              Hired.
-              <span className="absolute left-0 w-full" style={{ bottom: '-4px' }}>
-                <svg viewBox="0 0 280 12" preserveAspectRatio="none" style={{ width: '100%', height: 12 }}>
-                  <motion.path
-                    d="M2 9 C40 3, 90 11, 140 6 S220 2, 278 8"
-                    stroke="#4F46E5"
-                    strokeWidth="3"
-                    fill="none"
-                    strokeLinecap="round"
-                    initial={{ pathLength: 0 }}
-                    animate={isInView ? { pathLength: 1 } : { pathLength: 0 }}
-                    transition={{ duration: 1, delay: 0.3, ease: 'easeInOut' }}
-                  />
-                </svg>
+            Learn Live. Build Real Work.
+            <br />
+            Move Toward Real{' '}
+            <span className="relative inline-block">
+              <span
+                style={{
+                  background: 'linear-gradient(135deg, #4F46E5, #14B8A6)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
+                }}
+              >
+                Opportunities.
               </span>
             </span>
           </h2>
           <p className="mt-5 max-w-lg text-[16px] leading-relaxed text-text-secondary">
-            From live learning and real projects to structured pathways and career support — everything you need to succeed.
+            From live mentor-led sessions to portfolio projects and interview prep, every part of the experience is designed to
+            help learners build proof of skill - not just complete lessons.
           </p>
         </div>
 
@@ -136,13 +131,11 @@ export default function WhatIsKanonkode() {
               </div>
 
               <h3 className="font-display text-[24px] font-bold leading-snug text-dark-hero">
-                Live Learning.
-                <br />
-                Real Connections.
+                Learn Live With Mentors and Peers
               </h3>
 
               <p className="mt-3 text-[13px] leading-relaxed text-text-secondary">
-                Learn live with industry experts, ask questions, get real feedback, and grow together in a supportive cohort.
+                Ask questions in real time, get feedback as you learn, and stay accountable inside a guided cohort experience.
               </p>
 
               <div className="mt-5 flex items-center gap-3">
@@ -234,9 +227,10 @@ export default function WhatIsKanonkode() {
                       <Code2 size={20} className="text-indigo-main" />
                     </div>
                   </div>
-                  <h3 className="mb-2 font-display text-[18px] font-bold leading-snug text-dark-hero">Build While You Learn</h3>
+                  <h3 className="mb-2 font-display text-[18px] font-bold leading-snug text-dark-hero">Build Real Projects from Day One</h3>
                   <p className="text-[13px] leading-relaxed text-text-secondary">
-                    Every concept is paired with a hands-on project. You don&apos;t just watch, you build real-world solutions.
+                    Every major concept is paired with hands-on work so learners apply skills immediately and create
+                    portfolio-ready outcomes.
                   </p>
                 </div>
 
@@ -287,12 +281,11 @@ export default function WhatIsKanonkode() {
                     </div>
                   </div>
                   <h3 className="mb-2 font-display text-[18px] font-bold leading-snug text-dark-hero">
-                    No Guesswork.
-                    <br />
-                    Just Progress.
+                    No Guesswork - Just Guided Progress
                   </h3>
                   <p className="text-[13px] leading-relaxed text-text-secondary">
-                    Structured learning paths that take you from fundamentals to advanced — step by step.
+                    Follow a clear learning roadmap from fundamentals to advanced work, with milestones that keep progress
+                    visible and manageable.
                   </p>
                 </div>
 
@@ -344,9 +337,10 @@ export default function WhatIsKanonkode() {
                       <Briefcase size={20} className="text-indigo-main" />
                     </div>
                   </div>
-                  <h3 className="mb-2 font-display text-[18px] font-bold leading-snug text-dark-hero">Get Interview Ready</h3>
+                  <h3 className="mb-2 font-display text-[18px] font-bold leading-snug text-dark-hero">Prepare for Interviews and Career Moves</h3>
                   <p className="text-[13px] leading-relaxed text-text-secondary">
-                    Build a strong portfolio, practice with mock interviews, and get personalized career support.
+                    Strengthen your portfolio, practice with mock interviews, and get targeted support to present your skills
+                    with confidence.
                   </p>
                 </div>
 
@@ -386,7 +380,7 @@ export default function WhatIsKanonkode() {
         </div>
 
         <div className="outcomes-strip mt-5 flex flex-col items-start justify-between gap-6 rounded-2xl bg-dark-hero px-6 py-7 sm:px-8 lg:px-10">
-          <p className="flex-shrink-0 whitespace-nowrap font-display text-[16px] font-semibold text-white">Outcomes our learners achieve</p>
+          <p className="flex-shrink-0 whitespace-nowrap font-display text-[16px] font-semibold text-white">Outcomes Our Learners Achieve</p>
 
           <div className="flex w-full flex-wrap items-center gap-y-4">
             {[
@@ -396,7 +390,7 @@ export default function WhatIsKanonkode() {
                 iconBg: 'rgba(20,184,166,0.15)',
                 num: '90%',
                 numColor: '#14B8A6',
-                label: 'Career transition within 6 months',
+                label: 'Eligible learners achieved a career transition within 6 months',
               },
               {
                 icon: Briefcase,
@@ -404,15 +398,15 @@ export default function WhatIsKanonkode() {
                 iconBg: 'rgba(99,102,241,0.15)',
                 num: '250+',
                 numColor: '#6366F1',
-                label: 'Hiring partners',
+                label: 'Hiring and industry connections across our network',
               },
               {
                 icon: Users,
                 iconColor: '#6366F1',
                 iconBg: 'rgba(99,102,241,0.15)',
-                num: '15K+',
+                num: '15,000+',
                 numColor: '#6366F1',
-                label: 'Learners empowered',
+                label: 'Learners reached across programs, cohorts, and challenges',
               },
               {
                 icon: Star,
@@ -435,7 +429,7 @@ export default function WhatIsKanonkode() {
                       <p className="font-display text-[24px] font-bold leading-none" style={{ color: stat.numColor }}>
                         {stat.num}
                       </p>
-                      <p className="mt-0.5 max-w-[90px] text-[11px] leading-snug" style={{ color: 'rgba(255,255,255,0.5)' }}>
+                      <p className="mt-0.5 max-w-[170px] text-[11px] leading-snug" style={{ color: 'rgba(255,255,255,0.5)' }}>
                         {stat.label}
                       </p>
                     </div>
@@ -444,6 +438,7 @@ export default function WhatIsKanonkode() {
               )
             })}
           </div>
+          <p className="text-[11px] text-white/45">Based on internal program data across eligible learners and community initiatives.</p>
         </div>
       </div>
     </section>

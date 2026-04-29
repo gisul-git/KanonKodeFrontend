@@ -70,7 +70,7 @@ export default function CourseCard({ course, className }: CourseCardProps) {
             <span className="text-amber-400">★</span> {course.rating}
           </span>
           <span className="text-text-sub">·</span>
-          {course.hasCertification && (
+          {course.certification && (
             <span className="flex items-center gap-1 text-text-secondary">
               <Award size={14} className="text-indigo-light" /> Certification
             </span>

@@ -5,17 +5,17 @@ import { useEffect, useRef } from 'react'
 import { gsap, ScrollTrigger } from '@/lib/gsap-init'
 
 const scholarBenefits = [
-  'Real-world problem statements',
+  'Real-world challenge prompts',
   'Performance-based evaluation',
-  'Scholarship opportunities',
-  'Early access to programmes',
+  'Scholarship opportunity consideration',
+  'Priority access to selected programs',
 ]
 
 const workshopBenefits = [
-  'Live guided session with industry context',
-  'Hands-on mini project or task',
+  'Guided live session with practical industry context',
+  'A mini task or hands-on project',
   'Exposure to real tools & workflows',
-  'Clarity on career paths and skill expectations',
+  'Clearer understanding of relevant career paths and skill expectations',
 ]
 
 export default function WorkshopScholar() {
@@ -70,30 +70,38 @@ export default function WorkshopScholar() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="workshop-section w-full bg-white py-16 sm:py-20 lg:py-24">
+    <section ref={sectionRef} className="workshop-section w-full bg-white py-14 sm:py-16 lg:py-20">
       <div className="mx-auto w-full max-w-[1280px] px-6 lg:px-12">
-        <div className="workshop-heading mx-auto mb-16 max-w-2xl text-center">
+        <div className="workshop-heading mx-auto mb-10 max-w-4xl text-center">
           <p className="mb-3 text-[11px] font-medium tracking-[0.15em] text-teal-main">LEARN BEFORE YOU COMMIT</p>
           <h2
             className="font-display font-bold text-dark-hero
     leading-[1.1] text-center"
             style={{ fontSize: 'clamp(1.8rem, 3.5vw, 2.8rem)' }}
           >
-            Workshop &amp;{' '}
-            <span
-              style={{
-                background: 'linear-gradient(135deg, #4F46E5, #14B8A6)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text',
-                whiteSpace: 'nowrap',
-              }}
-            >
-              Scholar Challenge
+            <span className="md:whitespace-nowrap">Experience the KanonKode Approach</span>
+            <br />
+            <span className="md:whitespace-nowrap">
+              Before Choosing Your{' '}
+              <span
+                style={{
+                  background: 'linear-gradient(135deg, #4F46E5, #14B8A6)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
+                }}
+              >
+                Full Path
+              </span>
             </span>
           </h2>
           <p className="mt-4 text-base leading-[1.65] text-text-secondary">
-            Experience how we help you learn, build, and move toward real career outcomes — before you commit.
+            Not ready to enroll yet? Start with a guided workshop or skill-based challenge to experience how KanonKode helps
+            learners build, perform, and move toward real opportunities.
+          </p>
+          <p className="mt-3 text-[13px] text-text-secondary">
+            Want to prove your potential? <span className="font-semibold text-dark-hero">Take the Challenge</span>. Want a
+            guided preview? <span className="font-semibold text-dark-hero">Join the Workshop</span>.
           </p>
         </div>
 
@@ -116,17 +124,32 @@ export default function WorkshopScholar() {
 
             <div className="relative">
               <span className="inline-flex rounded-full border border-[rgba(255,255,255,0.12)] bg-[rgba(255,255,255,0.08)] px-4 py-2 text-[12px] font-medium text-white">
-                Prove your potential. Earn your opportunity.
+                Prove your potential. Unlock your opportunity.
               </span>
 
               <h3 className="mt-5 text-[28px] font-bold leading-[1.2] text-white [font-family:var(--font-display)] lg:text-[32px]">
-                Kanonkode <span className="text-indigo-light">Scholar Challenge</span>
+                KanonKode <span className="text-indigo-light">Scholar Challenge</span>
               </h3>
 
               <p className="mt-4 text-[15px] leading-[1.65] text-white/65">
-                Stand out by completing real tasks — and unlock scholarships, recognition, and priority access to
-                Kanonkode programmes.
+                Stand out by solving real tasks and demonstrating practical potential - with the chance to unlock scholarships,
+                recognition, and priority access to selected KanonKode programs.
               </p>
+              <p className="mt-3 text-[13px] text-white/70">
+                <span className="font-semibold text-white">Best for:</span> motivated learners who want to prove ability and earn
+                access to opportunities
+              </p>
+
+              <div className="mt-4 flex flex-wrap gap-2">
+                {['Duration: Challenge window', 'Format: Online', 'Evaluation included'].map((meta) => (
+                  <span
+                    key={meta}
+                    className="rounded-full border border-[rgba(255,255,255,0.16)] bg-[rgba(255,255,255,0.06)] px-3 py-1 text-[11px] text-white/80"
+                  >
+                    {meta}
+                  </span>
+                ))}
+              </div>
 
               <p className="mt-6 text-[14px] font-semibold text-white">What you&apos;ll get:</p>
               <div className="mt-3 space-y-2.5">
@@ -163,6 +186,7 @@ export default function WorkshopScholar() {
                 </div>
                 <span className="text-[14px] font-semibold text-white">1k+ Participants</span>
               </div>
+              <p className="mt-1 text-[12px] text-white/65">1,000+ challenge participants</p>
 
               <button
                 className="group mt-6 flex w-full items-center justify-center gap-2 rounded-xl py-4 text-[15px] font-bold text-white transition-all duration-200 hover:-translate-y-0.5"
@@ -202,12 +226,28 @@ export default function WorkshopScholar() {
               </span>
 
               <h3 className="mt-5 text-[24px] font-bold leading-[1.25] text-dark-hero [font-family:var(--font-display)] lg:text-[28px]">
-                Kanonkode Career Launch <span className="text-indigo-main">Workshop</span>
+                KanonKode Career Launch <span className="text-indigo-main">Workshop</span>
               </h3>
 
               <p className="mt-4 text-[15px] leading-[1.65] text-text-secondary">
-                Get a clear understanding of how Kanonkode programmes actually work — through hands-on execution.
+                Join a guided hands-on session that helps you experience how KanonKode programs work through real tasks,
+                practical tools, and structured learning context.
               </p>
+              <p className="mt-3 text-[13px] text-text-secondary">
+                <span className="font-semibold text-dark-hero">Best for:</span> learners who want a low-risk, guided preview
+                before choosing a full program
+              </p>
+
+              <div className="mt-4 flex flex-wrap gap-2">
+                {['Next free session: 12 May', 'Live', 'Limited seats'].map((meta) => (
+                  <span
+                    key={meta}
+                    className="rounded-full border border-[rgba(99,102,241,0.2)] bg-white px-3 py-1 text-[11px] text-text-secondary"
+                  >
+                    {meta}
+                  </span>
+                ))}
+              </div>
 
               <p className="mt-6 text-[14px] font-semibold text-dark-hero">What you&apos;ll get:</p>
               <div className="mt-3 space-y-2.5">
@@ -231,7 +271,7 @@ export default function WorkshopScholar() {
                   boxShadow: '0 6px 24px rgba(79,70,229,0.35)',
                 }}
               >
-                Join Free Workshop
+                Reserve Your Spot
                 <ArrowRight size={18} className="transition-transform duration-200 group-hover:translate-x-1" />
               </button>
             </div>

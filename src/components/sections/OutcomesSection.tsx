@@ -7,6 +7,57 @@ import { testimonials } from '@/data/testimonials'
 import { gsap } from '@/lib/gsap-init'
 import type { Testimonial } from '@/types'
 
+const transitionOutcomes = [
+  {
+    key: 'ai-operator',
+    label: 'AI Operator',
+    Icon: Bot,
+    color: '#6366F1',
+    bg: 'rgba(99,102,241,0.06)',
+    border: 'rgba(99,102,241,0.14)',
+    before: 'Graduate',
+    after: 'AI Workflow Automation Role',
+    context: 'Example learner pathway',
+    story: 'Built an automation portfolio, completed mock interviews, and moved into an AI workflow role.',
+  },
+  {
+    key: 'data-analyst',
+    label: 'Data Analyst',
+    Icon: BarChart2,
+    color: '#14B8A6',
+    bg: 'rgba(20,184,166,0.06)',
+    border: 'rgba(20,184,166,0.14)',
+    before: 'Graduate / Working Professional',
+    after: 'Data Analyst Role',
+    context: 'Example learner pathway',
+    story: 'Built dashboard projects, completed mock interviews, and moved toward a data analyst opportunity.',
+  },
+  {
+    key: 'devops-engineer',
+    label: 'DevOps Engineer',
+    Icon: GitMerge,
+    color: '#6366F1',
+    bg: 'rgba(99,102,241,0.06)',
+    border: 'rgba(99,102,241,0.14)',
+    before: 'Working Professional',
+    after: 'DevOps Engineer Role',
+    context: 'Example learner pathway',
+    story: 'Completed cloud deployment projects and interview prep to transition toward a DevOps role.',
+  },
+  {
+    key: 'cybersecurity-analyst',
+    label: 'Cybersecurity Analyst',
+    Icon: ShieldCheck,
+    color: '#14B8A6',
+    bg: 'rgba(20,184,166,0.06)',
+    border: 'rgba(20,184,166,0.14)',
+    before: 'Career Switcher',
+    after: 'Cybersecurity Analyst Role',
+    context: 'Example learner pathway',
+    story: 'Built security challenge projects and portfolio proof to move toward a cybersecurity path.',
+  },
+] as const
+
 function TestimonialCard({ t }: { t: Testimonial }) {
   const accent = t.accentColor ?? '#4F46E5'
 
@@ -127,8 +178,10 @@ export default function OutcomesSection() {
   const trackRef = useRef<HTMLDivElement>(null)
   const carouselRef = useRef<HTMLDivElement>(null)
   const [activeIndex, setActiveIndex] = useState(0)
+  const [selectedOutcomeKey, setSelectedOutcomeKey] = useState<(typeof transitionOutcomes)[number]['key']>('ai-operator')
   const DESKTOP_CARD_WIDTH = 380
   const CARD_GAP = 20
+  const selectedOutcome = transitionOutcomes.find((o) => o.key === selectedOutcomeKey) ?? transitionOutcomes[0]
 
   const getScrollStep = () => {
     if (!trackRef.current) return DESKTOP_CARD_WIDTH + CARD_GAP
@@ -212,67 +265,50 @@ export default function OutcomesSection() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="outcomes-section bg-white py-24 lg:py-32">
+    <section ref={sectionRef} className="outcomes-section bg-white py-14 sm:py-16 lg:py-20">
       <div className="max-w-[1280px] mx-auto px-6 lg:px-12">
-        <div className="outcomes-top flex flex-col lg:flex-row gap-16 lg:gap-20 items-center mb-24">
+        <div className="outcomes-top flex flex-col lg:flex-row gap-10 lg:gap-12 items-center mb-14 lg:mb-16">
           <div className="outcomes-text w-full lg:w-[45%] flex-shrink-0">
             <p className="text-teal-main font-semibold text-[11px] tracking-[0.15em] uppercase mb-4">Outcomes</p>
 
             <h2 className="font-display font-bold text-dark-hero leading-[1.05] mb-6" style={{ fontSize: 'clamp(2.4rem, 5vw, 3.8rem)' }}>
               Real Transitions.<br />
-              Real Careers.
+              <span
+                style={{
+                  background: 'linear-gradient(135deg, #4F46E5, #14B8A6)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
+                }}
+              >
+                Real Careers.
+              </span>
             </h2>
 
             <p className="text-[16px] text-text-secondary leading-relaxed mb-8 max-w-md">
-              Every programme is built with real projects, portfolios, and mock interviews - so you&apos;re job-ready for roles
-              that matter.
+              Every KanonKode program is designed to help learners build proof of skill through real projects, portfolio work,
+              mock interviews, and practical outcomes that support real career movement.
             </p>
 
+            <p className="text-[12px] font-semibold uppercase tracking-[0.1em] text-text-sub mb-3">Popular transition outcomes:</p>
             <div className="flex flex-wrap gap-2.5 mb-10">
-              {[
-                {
-                  label: 'AI Operator',
-                  Icon: Bot,
-                  color: '#6366F1',
-                  bg: 'rgba(99,102,241,0.06)',
-                  border: 'rgba(99,102,241,0.14)',
-                },
-                {
-                  label: 'Data Analyst',
-                  Icon: BarChart2,
-                  color: '#14B8A6',
-                  bg: 'rgba(20,184,166,0.06)',
-                  border: 'rgba(20,184,166,0.14)',
-                },
-                {
-                  label: 'DevOps Engineer',
-                  Icon: GitMerge,
-                  color: '#6366F1',
-                  bg: 'rgba(99,102,241,0.06)',
-                  border: 'rgba(99,102,241,0.14)',
-                },
-                {
-                  label: 'Cyber Security Analyst',
-                  Icon: ShieldCheck,
-                  color: '#14B8A6',
-                  bg: 'rgba(20,184,166,0.06)',
-                  border: 'rgba(20,184,166,0.14)',
-                },
-              ].map((role) => (
-                <span
+              {transitionOutcomes.map((role) => (
+                <button
                   key={role.label}
-                  className="inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-[13px] font-medium cursor-default"
+                  onClick={() => setSelectedOutcomeKey(role.key)}
+                  className="inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-[13px] font-medium transition-all duration-200"
                   style={{
-                    background: role.bg,
-                    border: `1px solid ${role.border}`,
-                    color: '#475569',
+                    background: selectedOutcome.key === role.key ? `${role.bg}` : 'white',
+                    border: `1px solid ${selectedOutcome.key === role.key ? role.color : role.border}`,
+                    color: selectedOutcome.key === role.key ? role.color : '#475569',
+                    boxShadow: selectedOutcome.key === role.key ? '0 4px 16px rgba(99,102,241,0.14)' : 'none',
                   }}
                 >
-                  <role.Icon size={15} style={{ color: role.color }} />
-                  <span className="text-[13px]" style={{ color: role.color }}>
+                  <role.Icon size={15} style={{ color: selectedOutcome.key === role.key ? role.color : '#64748B' }} />
+                  <span className="text-[13px]">
                     {role.label}
                   </span>
-                </span>
+                </button>
               ))}
             </div>
           </div>
@@ -291,7 +327,7 @@ export default function OutcomesSection() {
                   <p className="text-[10px] font-bold tracking-[0.15em] uppercase mb-1.5" style={{ color: '#94A3B8' }}>
                     Before
                   </p>
-                  <p className="font-display font-bold text-[22px] text-dark-hero leading-tight">Graduate</p>
+                  <p className="font-display font-bold text-[22px] text-dark-hero leading-tight">{selectedOutcome.before}</p>
                 </div>
 
                 <div className="flex flex-col items-center gap-1 flex-shrink-0">
@@ -310,7 +346,8 @@ export default function OutcomesSection() {
                   <p className="text-[10px] font-bold tracking-[0.15em] uppercase mb-1.5" style={{ color: '#14B8A6' }}>
                     After
                   </p>
-                  <p className="font-display font-bold text-[22px] text-dark-hero leading-tight">AI Automation Role</p>
+                  <p className="font-display font-bold text-[22px] text-dark-hero leading-tight">{selectedOutcome.after}</p>
+                  <p className="text-[11px] text-text-sub mt-1">{selectedOutcome.context}</p>
                   <div
                     className="inline-flex items-center gap-1.5 mt-2 px-3 py-1 rounded-full"
                     style={{
@@ -320,7 +357,7 @@ export default function OutcomesSection() {
                   >
                     <span style={{ color: '#14B8A6', fontSize: '12px' }}>★</span>
                     <span className="text-[11px] font-semibold" style={{ color: '#14B8A6' }}>
-                      Role Achieved
+                      Outcome: Role Achieved
                     </span>
                   </div>
                 </div>
@@ -328,9 +365,12 @@ export default function OutcomesSection() {
 
               <div className="mb-7">
                 <div className="flex items-center justify-between mb-3">
-                  <span className="font-semibold text-[14px] text-dark-hero">Skill Readiness</span>
+                  <span className="font-semibold text-[14px] text-dark-hero">Interview &amp; Portfolio Readiness</span>
                   <span className="font-display font-bold text-[22px] text-dark-hero">94%</span>
                 </div>
+                <p className="text-[11px] text-text-sub mb-3">
+                  Based on project completion, portfolio review, and mock interview progress.
+                </p>
 
                 <div className="h-3 rounded-full overflow-hidden" style={{ background: 'rgba(99,102,241,0.08)' }}>
                   <div
@@ -348,15 +388,15 @@ export default function OutcomesSection() {
                 {[
                   {
                     label: 'Portfolio Built',
-                    sub: 'Showcase ready',
+                    sub: 'Showcase-ready work completed',
                   },
                   {
-                    label: 'Mock Interview Done',
-                    sub: 'Interview confident',
+                    label: 'Mock Interview Completed',
+                    sub: 'Interview readiness strengthened',
                   },
                   {
                     label: 'Certificate Earned',
-                    sub: 'Industry recognised',
+                    sub: 'Industry-recognized completion proof',
                   },
                 ].map((chip) => (
                   <div
@@ -404,12 +444,13 @@ export default function OutcomesSection() {
                     ))}
                   </div>
                   <p className="text-[13px] text-text-secondary">
-                    Join <span className="font-bold text-dark-hero">15,000+</span> learners who made the switch
+                    Explore success stories from <span className="font-bold text-dark-hero">15,000+</span> learners across
+                    programs, challenges, and cohorts
                   </p>
                 </div>
 
                 <a
-                  href="#"
+                  href="/contact"
                   className="text-indigo-main font-semibold text-[13px] flex items-center gap-1.5 flex-shrink-0 hover:gap-2.5 transition-all duration-200 group"
                 >
                   View Success Stories
@@ -420,7 +461,7 @@ export default function OutcomesSection() {
           </div>
         </div>
 
-        <div className="mt-24" ref={carouselRef}>
+        <div className="mt-14 lg:mt-16" ref={carouselRef}>
           <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-6 mb-10">
             <div>
               <p className="text-teal-main font-semibold text-[11px] tracking-[0.15em] uppercase mb-3">Student Outcomes</p>

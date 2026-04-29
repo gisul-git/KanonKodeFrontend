@@ -61,7 +61,7 @@ export default function AboutCTA() {
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <a
-            href="/"
+            href="/courses"
             className="group inline-flex items-center justify-center gap-2 font-bold text-[15px] text-white px-8 py-4 rounded-xl transition-all duration-200 hover:-translate-y-0.5"
             style={{ background: 'linear-gradient(135deg, #4F46E5 0%, #6366F1 100%)', boxShadow: '0 8px 28px rgba(79,70,229,0.4)' }}
           >

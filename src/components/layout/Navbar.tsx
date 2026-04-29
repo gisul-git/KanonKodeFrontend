@@ -1,7 +1,7 @@
 'use client'
 
 import { AnimatePresence, motion } from 'framer-motion'
-import { ArrowRight, BarChart3, Bot, Briefcase, Building2, ChevronDown, ChevronLeft, ChevronRight, Cloud, Compass, FileText, GraduationCap, Grid2x2, Mail, Menu, Search, Shield, Sparkles, Trophy, UserCircle2, X } from 'lucide-react'
+import { ArrowRight, BarChart3, Bot, Briefcase, Building2, ChevronDown, ChevronLeft, ChevronRight, Cloud, Compass, FileText, GraduationCap, Grid2x2, Mail, Menu, Search, Shield, Sparkles, Trophy, UserCircle2, X, Zap, Code2, Brain, type LucideIcon } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
@@ -12,62 +12,44 @@ import { cn } from '@/lib/utils'
 const links = [
   { id: 'about', label: 'About', href: '/about' },
   { id: 'scholar', label: 'Scholar Challenge', href: '/scholar-challenge' },
-  { id: 'workshop', label: 'Workshop', href: '/workshop' },
-  { id: 'institution', label: 'For Institution', href: '/for-institution' },
+  { id: 'workshop', label: 'Workshops', href: '/workshop' },
+  { id: 'institution', label: 'For Institutions', href: '/for-institution' },
 ]
 
-const courseColumns = [
+const exploreCourseGroups = [
   {
-    title: 'AI PROGRAMS',
-    description: 'Build intelligent solutions with AI & ML',
-    icon: Bot,
-    iconColor: '#6D28D9',
-    iconBg: 'rgba(109,40,217,0.08)',
-    courses: ['AI Automation Operator', 'AI Full Stack Developer', 'AI Cloud & DevOps Engineer'],
-    cta: 'View all AI Programs',
+    title: 'LIVE PROGRAMMES',
+    items: [
+      { label: 'VibeCheck', href: '/courses/vibecheck', icon: Zap, iconColor: '#F59E0B', iconBg: '#FFFBEB' },
+      { label: 'AI Automation Operator', href: '/courses/aao', icon: Bot, iconColor: '#4F46E5', iconBg: '#EEF2FF' },
+      { label: 'Applied AI Data Analyst', href: '/courses/aada', icon: BarChart3, iconColor: '#0EA5E9', iconBg: '#F0F9FF' },
+      { label: 'AI Business Operator', href: '/courses/aibo', icon: Briefcase, iconColor: '#14B8A6', iconBg: '#ECFEFF' },
+      { label: 'AI Full Stack Dev', href: '/courses/afsad', icon: Code2, iconColor: '#7C3AED', iconBg: '#F5F3FF' },
+      { label: 'AI Cloud & DevOps', href: '/courses/acde', icon: Cloud, iconColor: '#0369A1', iconBg: '#E0F2FE' },
+    ],
   },
   {
-    title: 'DATA & ANALYTICS',
-    description: 'Turn data into decisions and drive impact',
-    icon: BarChart3,
-    iconColor: '#14B8A6',
-    iconBg: 'rgba(20,184,166,0.08)',
-    courses: ['Data Analytics Foundations', 'Power BI Essentials', 'SQL for Decision Making'],
-    cta: 'View all Data Courses',
-  },
-  {
-    title: 'CLOUD & DEVOPS',
-    description: 'Build, deploy and scale modern applications',
-    icon: Cloud,
-    iconColor: '#0284C7',
-    iconBg: 'rgba(2,132,199,0.08)',
-    courses: ['Cloud Foundations', 'CI/CD with GitHub Actions', 'Containerization Basics'],
-    cta: 'View all Cloud Courses',
-  },
-  {
-    title: 'CYBER SECURITY',
-    description: 'Learn to protect systems and secure the future',
-    icon: Shield,
-    iconColor: '#F59E0B',
-    iconBg: 'rgba(245,158,11,0.08)',
-    courses: ['Ethical Hacking Essentials', 'SOC Analyst Bootcamp', 'Network Security Basics'],
-    cta: 'View all Security Courses',
+    title: 'ANNOUNCED',
+    items: [
+      { label: 'AI Data Scientist', href: '/courses/adse', icon: Brain, iconColor: '#8B5CF6', iconBg: '#F5F3FF' },
+      { label: 'AI Cyber Security', href: '/courses/acseh', icon: Shield, iconColor: '#0F766E', iconBg: '#F0FDFA' },
+    ],
   },
 ]
 
 const searchItems = [
-  { label: 'AI Full Stack Developer', type: 'Programme', href: '/courses/afsd', icon: GraduationCap, iconColor: '#4F46E5', iconBg: '#EEF2FF' },
-  { label: 'AI Automation Operator', type: 'Programme', href: '/courses/aao', icon: GraduationCap, iconColor: '#4F46E5', iconBg: '#EEF2FF' },
-  { label: 'AI Cyber Security & Ethical Hacker', type: 'Programme', href: '/courses/acseh', icon: GraduationCap, iconColor: '#4F46E5', iconBg: '#EEF2FF' },
-  { label: 'AI Cloud & DevOps Engineer', type: 'Programme', href: '/courses/acde', icon: GraduationCap, iconColor: '#4F46E5', iconBg: '#EEF2FF' },
-  { label: 'AI Data Analyst', type: 'Programme', href: '/courses/ada', icon: GraduationCap, iconColor: '#4F46E5', iconBg: '#EEF2FF' },
-  { label: 'Scholar Challenge', type: 'Page', href: '/scholar-challenge', icon: Trophy, iconColor: '#F59E0B', iconBg: '#FFFBEB' },
-  { label: 'Workshops', type: 'Page', href: '/workshop', icon: Briefcase, iconColor: '#14B8A6', iconBg: '#ECFEFF' },
-  { label: 'For Institutions', type: 'Page', href: '/for-institution', icon: Building2, iconColor: '#0891B2', iconBg: '#ECFEFF' },
-  { label: 'About Us', type: 'Page', href: '/about', icon: FileText, iconColor: '#64748B', iconBg: '#F1F5F9' },
-  { label: 'Contact Us', type: 'Page', href: '/contact', icon: Mail, iconColor: '#6366F1', iconBg: '#EEF2FF' },
-  { label: 'Career Counselling', type: 'Feature', href: '/#career', icon: Sparkles, iconColor: '#0D9488', iconBg: '#F0FDFA' },
-  { label: 'Free Career Counselling', type: 'Feature', href: '/#career', icon: Sparkles, iconColor: '#0D9488', iconBg: '#F0FDFA' },
+  { label: 'VibeCheck — Get Hired in 30 Days', type: 'Programme', href: '/courses/vibecheck', icon: Zap, iconColor: '#F59E0B', iconBg: '#FFFBEB' },
+  { label: 'AI Automation Operator (AAO)', type: 'Programme', href: '/courses/aao', icon: Bot, iconColor: '#4F46E5', iconBg: '#EEF2FF' },
+  { label: 'Applied AI Data Analyst (AADA)', type: 'Programme', href: '/courses/aada', icon: BarChart3, iconColor: '#0EA5E9', iconBg: '#F0F9FF' },
+  { label: 'AI Business Operator (AIBO)', type: 'Programme', href: '/courses/aibo', icon: Briefcase, iconColor: '#14B8A6', iconBg: '#ECFEFF' },
+  { label: 'AI Full Stack App Developer (AFSAD)', type: 'Programme', href: '/courses/afsad', icon: Code2, iconColor: '#7C3AED', iconBg: '#F5F3FF' },
+  { label: 'AI Cloud & DevOps Engineer (ACDE)', type: 'Programme', href: '/courses/acde', icon: Cloud, iconColor: '#0369A1', iconBg: '#E0F2FE' },
+  { label: 'AI Data Scientist & Engineer (ADSE)', type: 'Announced', href: '/courses/adse', icon: Brain, iconColor: '#8B5CF6', iconBg: '#F5F3FF' },
+  { label: 'AI Cyber Security & Ethical Hacker (ACSEH)', type: 'Announced', href: '/courses/acseh', icon: Shield, iconColor: '#0F766E', iconBg: '#F0FDFA' },
+  { label: 'Scholar Challenge', type: 'Page', href: '/scholar-challenge', icon: Trophy, iconColor: '#D97706', iconBg: '#FFFBEB' },
+  { label: 'Workshops', type: 'Page', href: '/workshop', icon: Briefcase, iconColor: '#0F766E', iconBg: '#F0FDFA' },
+  { label: 'For Institutions', type: 'Page', href: '/for-institution', icon: Building2, iconColor: '#0369A1', iconBg: '#E0F2FE' },
+  { label: 'Contact Us', type: 'Page', href: '/contact', icon: Mail, iconColor: '#4F46E5', iconBg: '#EEF2FF' },
 ]
 
 const exploreCategories = [
@@ -134,36 +116,36 @@ function CourseDropdown({ open }: { open: boolean }) {
             </button>
           </div>
 
-          <div className="grid grid-cols-1 gap-3 xl:grid-cols-[1fr_1fr_1fr_1fr_220px]">
-            {courseColumns.map((col) => (
-              <div key={col.title} className="rounded-xl border border-[rgba(99,102,241,0.08)] bg-[#FCFDFE] p-4 flex flex-col min-h-[262px]">
-                <div className="mb-4 flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl" style={{ background: col.iconBg }}>
-                    <col.icon size={19} style={{ color: col.iconColor }} />
+          <div className="grid grid-cols-1 gap-3 xl:grid-cols-[1fr_220px]">
+            <div className="rounded-xl border border-[rgba(99,102,241,0.08)] bg-[#FCFDFE] p-4">
+              <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+                {exploreCourseGroups.map((group) => (
+                  <div key={group.title}>
+                    <p className="mb-2 text-[11px] font-bold tracking-[0.08em] text-indigo-main">{group.title}</p>
+                    <div className="space-y-1.5">
+                      {group.items.map((course) => (
+                        <Link
+                          key={course.label}
+                          href={course.href}
+                          className="flex min-h-[40px] items-center justify-between rounded-lg px-2.5 py-2 text-[13px] text-text-secondary transition-all duration-150 hover:bg-bg-tinted hover:text-dark-hero"
+                        >
+                          <div className="flex items-center gap-2.5">
+                            <div className="flex h-7 w-7 items-center justify-center rounded-lg" style={{ background: course.iconBg }}>
+                              <course.icon size={14} style={{ color: course.iconColor }} />
+                            </div>
+                            <span>{course.label}</span>
+                          </div>
+                          <span className="text-text-sub">›</span>
+                        </Link>
+                      ))}
+                    </div>
                   </div>
-                  <div className="min-h-[40px]">
-                    <p className="text-[12px] font-bold tracking-[0.04em] text-indigo-main">{col.title}</p>
-                    <p className="mt-0.5 text-[11px] text-text-secondary">{col.description}</p>
-                  </div>
-                </div>
-                <div className="space-y-1.5 flex-1">
-                  {col.courses.map((course) => (
-                    <Link
-                      key={course}
-                      href="#"
-                      className="flex min-h-[38px] items-center justify-between rounded-lg px-2.5 py-2 text-[13px] text-text-secondary transition-all duration-150 hover:bg-bg-tinted hover:text-dark-hero"
-                    >
-                      {course}
-                      <span className="text-text-sub">›</span>
-                    </Link>
-                  ))}
-                </div>
-                <Link href="#" className="mt-4 inline-flex items-center gap-1 text-[12px] font-semibold text-indigo-main transition-all hover:gap-1.5">
-                  {col.cta} →
-                </Link>
+                ))}
               </div>
-            ))}
-
+              <Link href="/courses" className="mt-4 inline-flex items-center gap-1 text-[12px] font-semibold text-indigo-main transition-all hover:gap-1.5">
+                View all →
+              </Link>
+            </div>
             <div className="rounded-xl border border-[rgba(99,102,241,0.1)] bg-[linear-gradient(155deg,#F8FAFF_0%,#EEF2FF_100%)] p-5">
               <div className="mx-auto mb-3 flex h-16 w-16 items-center justify-center overflow-hidden rounded-full border border-indigo-main/20 bg-white">
                 <img
@@ -181,7 +163,7 @@ function CourseDropdown({ open }: { open: boolean }) {
                 Answer a few questions and we&apos;ll recommend the right path for you.
               </p>
               <Link
-                href="#"
+                href="/courses"
                 className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-indigo-main px-4 py-2.5 text-[13px] font-semibold text-white transition-all duration-150 hover:bg-indigo-hover"
               >
                 Find My Path
@@ -196,7 +178,7 @@ function CourseDropdown({ open }: { open: boolean }) {
               { icon: Building2, label: 'For Institutions', desc: 'Empower learners with industry-ready programs' },
               { icon: Grid2x2, label: 'View All Programs', desc: 'Explore complete course catalog' },
             ].map((item) => (
-              <Link key={item.label} href="#" className="flex items-center justify-between rounded-lg px-3 py-2 transition-colors hover:bg-bg-tinted">
+              <Link key={item.label} href="/courses" className="flex items-center justify-between rounded-lg px-3 py-2 transition-colors hover:bg-bg-tinted">
                 <div className="flex items-center gap-2.5">
                   <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-indigo-main/10 text-indigo-main">
                     <item.icon size={16} />
@@ -243,8 +225,8 @@ function MobileDrawer({ open, onClose, onLogin }: { open: boolean; onClose: () =
               </button>
             </div>
             <nav className="space-y-4">
-              <Link href="#" onClick={onClose} className="block text-base font-medium text-text-secondary transition-colors hover:text-indigo-main max-[360px]:text-[15px]">
-                Explore Courses
+              <Link href="/courses" onClick={onClose} className="block text-base font-medium text-text-secondary transition-colors hover:text-indigo-main max-[360px]:text-[15px]">
+                Programs
               </Link>
               {links.map((link) => (
                 <Link
@@ -395,7 +377,7 @@ export default function Navbar() {
         <div className="mx-auto flex h-full w-full max-w-[1280px] items-center justify-between px-3 sm:px-4 lg:px-8">
           <Link href="/" className="group mr-3 flex shrink-0 items-center sm:mr-8">
             <Image
-              src={useDarkLogo ? '/logo.svg' : '/KanonKode%20Light%20Theme.svg'}
+              src={useDarkLogo ? '/KanonKode Logo.png' : '/KanonKode%20Light%20Theme.svg'}
               alt="Kanonkode logo"
               width={170}
               height={44}
@@ -415,7 +397,7 @@ export default function Navbar() {
                     useDarkNavText ? 'text-text-secondary hover:text-dark-hero' : 'text-white/80 hover:text-white',
                   )}
                 >
-                  Explore Courses <ChevronDown size={16} />
+                  Programs <ChevronDown size={16} />
                 </button>
                 <CourseDropdown open={dropdownOpen} />
               </div>

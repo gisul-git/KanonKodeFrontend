@@ -6,7 +6,7 @@ const phrases = [
   { text: 'Build real projects from ', highlight: 'Day 1', rest: '' },
   { text: '', highlight: 'Scholar Challenge', rest: ': Earn your opportunity' },
   { text: '', highlight: 'Career-focused', rest: ' structured pathways' },
-  { text: 'Kanonkode × ', highlight: 'Industry-ready', rest: ' skills' },
+  { text: 'KanonKode × ', highlight: 'Industry-ready', rest: ' skills' },
 ]
 
 export default function ScrollingBanner() {

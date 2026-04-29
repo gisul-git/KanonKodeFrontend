@@ -9,7 +9,8 @@ const audiences = [
   {
     id: 'students',
     label: 'Students',
-    desc: 'Find direction early. Build real skills from Day 1.',
+    desc: 'Discover foundational programs, practical skills, and early direction for your future.',
+    cta: 'Explore student paths',
     image: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=600&q=80',
     accent: '#14B8A6',
     accentBg: 'rgba(20,184,166,0.15)',
@@ -18,7 +19,8 @@ const audiences = [
   {
     id: 'graduates',
     label: 'Graduates',
-    desc: 'Land your first role with a job-ready portfolio.',
+    desc: 'Build job-ready skills, real project experience, and confidence for your first opportunities.',
+    cta: 'Explore graduate programs',
     image: 'https://images.unsplash.com/photo-1627556704302-624286467c65?w=600&q=80',
     accent: '#4F46E5',
     accentBg: 'rgba(79,70,229,0.15)',
@@ -26,8 +28,9 @@ const audiences = [
   },
   {
     id: 'professional',
-    label: 'Professional',
-    desc: 'Upskill fast. Stay ahead in your career.',
+    label: 'Professionals',
+    desc: 'Upskill with structured, mentor-led learning built for career growth and transition.',
+    cta: 'Explore professional upskilling',
     image: 'https://images.unsplash.com/photo-1551434678-e076c223a692?w=600&q=80',
     accent: '#8B5CF6',
     accentBg: 'rgba(139,92,246,0.15)',
@@ -36,7 +39,8 @@ const audiences = [
   {
     id: 'institutions',
     label: 'Institutions',
-    desc: 'Partner with us to upskill your student cohorts.',
+    desc: 'Deliver capability-building programs, workshops, and outcomes-driven learning experiences.',
+    cta: 'Explore institution solutions',
     image: 'https://images.unsplash.com/photo-1562774053-701939374585?w=600&q=80',
     accent: '#0D9488',
     accentBg: 'rgba(13,148,136,0.15)',
@@ -88,7 +92,7 @@ export default function WhoItIsFor() {
   }, [])
 
   return (
-    <section className="who-section relative overflow-hidden py-16 sm:py-20 lg:py-24" style={{ backgroundColor: '#F8FAFC' }}>
+    <section className="who-section relative overflow-hidden py-14 sm:py-16 lg:py-20" style={{ backgroundColor: '#F8FAFC' }}>
       <div
         className="pointer-events-none absolute inset-0"
         style={{
@@ -104,33 +108,41 @@ export default function WhoItIsFor() {
       />
 
       <div className="relative mx-auto max-w-[1280px] px-6 lg:px-12">
-        <div className="flex flex-col gap-12 lg:flex-row lg:gap-16">
+        <div className="flex flex-col gap-8 lg:flex-row lg:gap-10">
           <div className="who-text-col w-full flex-shrink-0 lg:sticky lg:top-32 lg:w-[38%]">
-            <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.15em] text-teal-main">Who It Is For</p>
+            <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.15em] text-teal-main">Choose Your Path</p>
 
             <h2 className="mb-5 font-display font-bold leading-[1.1] text-dark-hero" style={{ fontSize: 'clamp(2rem, 3.5vw, 2.75rem)' }}>
-              For Those Who Want
-              <br />
-              to Learn with Purpose
+              Built for Every Stage of Your{' '}
+              <span
+                style={{
+                  background: 'linear-gradient(135deg, #4F46E5, #14B8A6)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
+                }}
+              >
+                Learning Journey
+              </span>
             </h2>
 
             <p className="mb-8 max-w-sm text-[16px] leading-relaxed text-text-secondary">
-              Whether you&apos;re a student finding direction, a graduate seeking your first break, a professional upskilling, or an
-              institution building capability — Kanonkode is structured for you.
+              From students exploring what&apos;s next to graduates building momentum, professionals upgrading skills, and
+              institutions creating impact - KanonKode offers structured learning paths designed around real outcomes.
             </p>
 
             <div className="mb-10 flex flex-col gap-3 sm:flex-row">
               <a
-                href="#"
+                href="/courses"
                 className="inline-flex items-center justify-center gap-2 rounded-xl bg-teal-main px-6 py-3.5 text-[15px] font-bold text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-teal-hover hover:shadow-teal"
               >
-                Explore Programmes →
+                Explore Programs →
               </a>
               <a
-                href="#"
+                href="/scholar-challenge"
                 className="inline-flex items-center justify-center gap-2 rounded-xl border-[1.5px] border-indigo-main bg-transparent px-6 py-3.5 text-[15px] font-semibold text-indigo-main transition-all duration-200 hover:-translate-y-0.5 hover:bg-bg-tinted"
               >
-                Join Scholarship →
+                Join the Scholar Challenge →
               </a>
             </div>
 
@@ -164,7 +176,7 @@ export default function WhoItIsFor() {
 
                 <div className="absolute right-3 top-3 z-10 translate-y-1 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
                   <span className="flex items-center gap-1 rounded-full px-3 py-1.5 text-[11px] font-bold text-white" style={{ backgroundColor: aud.accent }}>
-                    Explore →
+                    {aud.cta} →
                   </span>
                 </div>
 
@@ -173,7 +185,7 @@ export default function WhoItIsFor() {
                     {aud.label}
                   </h3>
                   <p
-                    className="max-h-0 overflow-hidden text-[13px] font-medium leading-snug opacity-0 transition-all duration-300 group-hover:max-h-10 group-hover:opacity-100"
+                    className="line-clamp-1 text-[13px] font-medium leading-snug opacity-85 transition-all duration-300 group-hover:line-clamp-none group-hover:opacity-100"
                     style={{ color: 'rgba(255,255,255,0.80)' }}
                   >
                     {aud.desc}

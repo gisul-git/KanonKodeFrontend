@@ -88,7 +88,7 @@ export default function Footer() {
               </p>
             </div>
             <div className="flex flex-shrink-0 flex-col gap-4 sm:flex-row">
-              <a href="#" className="group inline-flex items-center justify-center gap-2 rounded-xl px-7 py-3.5 text-[14px] font-bold text-white" style={{ background: 'linear-gradient(135deg, #4F46E5 0%, #6366F1 100%)' }}>Explore Programmes<ArrowRight size={18} /></a>
+              <a href="/courses" className="group inline-flex items-center justify-center gap-2 rounded-xl px-7 py-3.5 text-[14px] font-bold text-white" style={{ background: 'linear-gradient(135deg, #4F46E5 0%, #6366F1 100%)' }}>Explore Programmes<ArrowRight size={18} /></a>
               <a href="#" className="inline-flex items-center justify-center gap-2 rounded-xl border px-7 py-3.5 text-[14px] font-semibold" style={{ borderColor: 'rgba(255,255,255,0.15)', color: 'rgba(255,255,255,0.8)', background: 'rgba(255,255,255,0.04)' }}>Book Free Counselling</a>
             </div>
           </div>

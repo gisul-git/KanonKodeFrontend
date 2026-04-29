@@ -4,6 +4,7 @@ import AuthModal from '@/components/auth/AuthModal'
 import Footer from '@/components/layout/Footer'
 import Navbar from '@/components/layout/Navbar'
 import TopBar from '@/components/layout/TopBar'
+import WelcomePopupWrapper from '@/components/onboarding/WelcomePopupWrapper'
 import { useAuthModal } from '@/context/AuthModalContext'
 
 export default function AppShell({ children }: { children: React.ReactNode }) {
@@ -16,6 +17,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
       <main>{children}</main>
       <Footer />
       <AuthModal isOpen={isOpen} onClose={closeModal} defaultMode={mode} />
+      <WelcomePopupWrapper />
     </>
   )
 }

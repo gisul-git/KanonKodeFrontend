@@ -39,12 +39,22 @@ export default function FAQSection() {
         <div>
           <p className="mb-3 text-[11px] font-medium tracking-[0.15em] text-teal-main">FAQ</p>
           <h2 className="text-[clamp(1.75rem,3vw,2.5rem)] font-bold leading-[1.2] text-dark-hero [font-family:var(--font-display)]">
-            Questions We Hear All the Time
+            Questions We Hear{' '}
+            <span
+              style={{
+                background: 'linear-gradient(135deg, #4F46E5, #14B8A6)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+              }}
+            >
+              All the Time
+            </span>
           </h2>
           <p className="mt-4 max-w-xs text-[15px] text-text-secondary">Can&apos;t find your answer? Reach us directly.</p>
 
           <Link
-            href="#"
+            href="/contact"
             className="mt-6 inline-flex items-center gap-2 text-[14px] font-medium text-indigo-main transition-all duration-200 hover:gap-3"
           >
             <MessageCircle size={18} />

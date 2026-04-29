@@ -69,7 +69,7 @@ export default function ScholarCTA() {
             <ArrowRight size={18} className="transition-transform duration-200 group-hover:translate-x-1" />
           </a>
           <a
-            href="/"
+            href="/courses"
             className="inline-flex w-full sm:w-auto items-center justify-center gap-2 font-semibold text-[14px] sm:text-[15px] px-5 sm:px-8 py-3.5 sm:py-4 rounded-xl transition-all duration-200 hover:-translate-y-0.5"
             style={{
               background: 'rgba(255,255,255,0.06)',

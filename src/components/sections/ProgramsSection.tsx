@@ -4,30 +4,40 @@ import { useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
 import {
   Code2, ShieldCheck, Bot, Cloud, BarChart2, Brain, Layers,
-  Clock, FolderOpen, BadgeCheck, Award, ArrowRight, ChevronLeft, ChevronRight,
+  Clock, FolderOpen, BadgeCheck, Award, ArrowRight, ChevronLeft, ChevronRight, Calendar, Zap, Star, Sparkles, Flame,
   type LucideIcon,
 } from 'lucide-react'
 import { gsap } from '@/lib/gsap-init'
 import { ScrollTrigger } from '@/lib/gsap-init'
 import { cn } from '@/lib/utils'
-import { courses } from '@/data/courses'
+import { launchedCourses } from '@/data/courses'
 import type { Course } from '@/types'
 
 const iconMap: Record<string, LucideIcon> = {
   Code2, ShieldCheck, Bot, Cloud, BarChart2, Brain, Layers,
 }
 
+const badgeIconMap: Record<string, LucideIcon> = {
+  '⚡': Zap,
+  '⭐': Star,
+  '✨': Sparkles,
+  '🔥': Flame,
+  '🚀': Zap,
+}
+
 const TABS = [
   'All Programs',
-  'AI & Data',
-  'Development',
-  'Cloud',
+  'Software Development',
+  'Data & Analytics',
   'Cybersecurity',
+  'Cloud & DevOps',
+  'Automation',
   'Career Support',
 ]
 
 function ProgramCard({ course }: { course: Course }) {
   const Icon = iconMap[course.icon ?? 'Code2'] ?? Code2
+  const BadgeIcon = course.badgeIcon ? (badgeIconMap[course.badgeIcon] ?? Star) : Star
   return (
     <div
       className="group relative flex-shrink-0 bg-white rounded-2xl
@@ -60,7 +70,7 @@ function ProgramCard({ course }: { course: Course }) {
           <div className="absolute top-4 left-4 z-10 flex items-center
             gap-1.5 bg-white/95 backdrop-blur-sm
             px-3 py-1.5 rounded-full shadow-sm">
-            <span className="text-[13px]">{course.badgeIcon}</span>
+            <BadgeIcon size={13} style={{ color: '#F59E0B' }} />
             <span className="text-[10px] font-bold text-dark-hero">
               {course.badge}
             </span>
@@ -86,9 +96,11 @@ function ProgramCard({ course }: { course: Course }) {
 
         <div className="space-y-2 mb-5">
           {([
+            { icon: Layers, text: course.level ? (course.id === 'afsad' ? 'Beginner to Intermediate' : `${course.level}`) : undefined },
             { icon: Clock, text: course.duration },
             { icon: FolderOpen, text: course.projects },
             { icon: BadgeCheck, text: course.support },
+            { icon: Calendar, text: course.nextBatch ? `Next Cohort: ${course.nextBatch}` : undefined },
           ] as { icon: LucideIcon; text?: string }[])
             .filter(m => !!m.text)
             .map(({ icon: MI, text }) => (
@@ -160,10 +172,19 @@ export default function ProgramsSection() {
   const [activeTab, setActiveTab] = useState('All Programs')
   const sectionRef = useRef<HTMLElement>(null)
   const cardsRef = useRef<HTMLDivElement>(null)
+  const programmes = launchedCourses.slice(0, 6)
 
   const filtered = activeTab === 'All Programs'
-    ? courses
-    : courses.filter(c => c.category === activeTab)
+    ? programmes
+    : programmes.filter((c) => {
+      if (activeTab === 'Software Development') return c.category === 'Development'
+      if (activeTab === 'Data & Analytics') return c.category === 'Data & Analytics'
+      if (activeTab === 'Cloud & DevOps') return c.category === 'Cloud & DevOps'
+      if (activeTab === 'Automation') return c.id === 'aao'
+      if (activeTab === 'Career Support') return !!c.support?.toLowerCase().includes('placement')
+      if (activeTab === 'Cybersecurity') return c.category === 'Cybersecurity'
+      return true
+    })
 
   const scrollCards = (dir: 'left' | 'right') => {
     if (!cardsRef.current) return
@@ -190,7 +211,7 @@ export default function ProgramsSection() {
   return (
     <section
       ref={sectionRef}
-      className="programs-section bg-white py-16 sm:py-20 lg:py-24"
+      className="programs-section bg-white py-14 sm:py-16 lg:py-20"
       style={{ overflow: 'hidden' }}
     >
       <div className="max-w-[1280px] mx-auto px-6 lg:px-12">
@@ -199,26 +220,33 @@ export default function ProgramsSection() {
           <div>
             <p className="text-teal-main font-semibold text-[11px]
               tracking-[0.15em] uppercase mb-3">
-              Programmes
+              Career Paths
             </p>
             <h2 className="font-display font-bold text-dark-hero leading-[1.05]"
               style={{ fontSize: 'clamp(2.2rem, 4.5vw, 3.5rem)' }}>
-              Choose Your Career Path.<br />
-              Build Skills. Get Hired.
+              Explore Programs Built Around{' '}
+              <span style={{
+                background: 'linear-gradient(135deg, #4F46E5, #14B8A6)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+              }}>
+                Real Career Paths
+              </span>
             </h2>
             <p className="mt-4 text-[15px] text-text-secondary
               leading-relaxed max-w-lg">
-              Industry-aligned programmes designed to help you learn,
-              build and land your dream role.
+              Industry-aligned programs designed to help learners build practical skills, complete real projects, and move
+              toward meaningful career outcomes.
             </p>
           </div>
-          <a href="#"
+          <a href="/courses"
             className="inline-flex items-center gap-2 flex-shrink-0
               border-[1.5px] border-indigo-main text-indigo-main
               font-semibold text-[14px] px-6 py-3 rounded-xl
               hover:bg-bg-tinted hover:-translate-y-0.5
               transition-all duration-200 self-start lg:self-end">
-            Explore all programmes →
+            Explore All Programs →
           </a>
         </div>
 
@@ -267,11 +295,12 @@ export default function ProgramsSection() {
         className="relative overflow-hidden"
         style={{
           paddingLeft: 'max(0px, calc((100vw - 1280px) / 2 + 2px))',
+          paddingRight: 'max(0px, calc((100vw - 1280px) / 2 + 2px))',
         }}
       >
         <div
           ref={cardsRef}
-          className="flex h-full items-stretch gap-4 overflow-x-auto pr-1 sm:gap-5 sm:pr-3 lg:pr-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          className="flex h-full items-stretch gap-4 overflow-x-auto sm:gap-5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
           {filtered.map((course) => (
             <ProgramCard key={course.id} course={course} />

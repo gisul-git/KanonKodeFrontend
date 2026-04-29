@@ -139,7 +139,7 @@ export default function SelectiveMandate() {
                 <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.15em]" style={{ color: 'rgba(255,255,255,0.35)' }}>
                   Primary Reward
                 </p>
-                <p className="mb-1 font-display text-[28px] font-black leading-tight text-white">50-75% Scholarship</p>
+                <p className="mb-1 font-display text-[28px] font-black leading-tight text-white">Upto 100% Scholarship</p>
                 <p className="text-[13px]" style={{ color: 'rgba(255,255,255,0.45)' }}>
                   On any Kanonkode programme of your choice
                 </p>

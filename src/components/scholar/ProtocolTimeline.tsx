@@ -338,7 +338,7 @@ export default function ProtocolTimeline() {
           </div>
           <div className="text-center">
             <p className="font-display font-bold text-[18px] text-dark-hero mb-1">Scholarship Awarded</p>
-            <p className="text-[13px] text-text-secondary">50-75% off any Kanonkode programme</p>
+            <p className="text-[13px] text-text-secondary">Upto 100% off any Kanonkode programme</p>
           </div>
           <a
             href="#apply"

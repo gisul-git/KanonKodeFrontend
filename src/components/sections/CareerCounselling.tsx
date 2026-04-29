@@ -57,9 +57,27 @@ export default function CareerCounselling() {
           <h2 className="mt-5 text-[clamp(2.2rem,4vw,3.5rem)] font-bold leading-[1.1] text-white [font-family:var(--font-display)]">
             Get Free
             <br />
-            Career{' '}
+            <span
+              style={{
+                background: 'linear-gradient(135deg, #818CF8, #14B8A6)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+              }}
+            >
+              Career
+            </span>{' '}
             <span className="relative inline-block">
-              Counselling
+              <span
+                style={{
+                  background: 'linear-gradient(135deg, #818CF8, #14B8A6)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
+                }}
+              >
+                Counselling
+              </span>
               <span className="absolute -bottom-2 left-0 h-[12px] w-full">
                 <svg viewBox="0 0 300 12" preserveAspectRatio="none" className="h-full w-full">
                   <motion.path
@@ -79,7 +97,7 @@ export default function CareerCounselling() {
           </h2>
 
           <p className="mt-5 max-w-[440px] text-[16px] leading-[1.7] text-white/65">
-            Talk to a Kanonkode career advisor — understand which programme fits your goals, timeline, and current skill
+            Talk to a KanonKode career advisor — understand which programme fits your goals, timeline, and current skill
             level. No pressure, no sales pitch. Just clarity.
           </p>
 
@@ -124,7 +142,7 @@ export default function CareerCounselling() {
               </div>
               <div className="flex items-center gap-3">
                 <User size={18} className="text-teal-main" />
-                <span className="text-[14px] text-white/75">Kanonkode Career Advisor</span>
+                <span className="text-[14px] text-white/75">KanonKode Career Advisor</span>
               </div>
               <div className="flex items-center gap-3">
                 <BookOpen size={18} className="text-teal-main" />

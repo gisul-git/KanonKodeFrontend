@@ -1,22 +1,38 @@
 export interface Course {
   id: string
-  title: string
   code: string
+  title: string
   category: string
-  badge?: string
-  badgeIcon?: string
-  duration?: string
-  projects?: string
-  support?: string
+  badge: string | null
+  badgeIcon: string | null
+  duration: string
+  durationWeeks: number
+  projects: string
+  support: string
   rating: number
-  reviews?: number
-  description?: string
-  icon?: string
+  reviews: number
+  description: string
+  longDesc: string
+  icon: string
   image: string
-  featured?: boolean
-  certification?: string | null
-  enrolledCount?: string | null
-  hasCertification?: boolean
+  featured: boolean
+  certification: string | null
+  enrolledCount: string | null
+  level: 'Beginner' | 'Intermediate' | 'Advanced'
+  price: 'Free' | 'Paid'
+  mode: 'Live' | 'Hybrid'
+  skills: string[]
+  nextBatch: string
+  salary: string
+  launchStatus: 'live' | 'announced' | 'coming-soon'
+  portfolioRole: string
+  scholarshipProduct: boolean
+  standardPrice: number
+  scholarshipPrice: string
+  institutionPrice: string
+  emiPrice: string
+  weeklyLiveSessions: number
+  icp: string
 }
 
 export interface Testimonial {

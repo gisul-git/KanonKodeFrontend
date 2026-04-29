@@ -71,7 +71,7 @@ export default function ChallengeHero() {
           </div>
 
           <p className="ch-item mb-8 max-w-lg text-[15px] leading-relaxed text-text-secondary sm:mb-10 sm:text-[16px]">
-            Prove your potential through real tasks - and earn a 50-75% scholarship, recognition, and priority access to Kanonkode
+            Prove your potential through real tasks - and earn a Upto 100% scholarship, recognition, and priority access to Kanonkode
             programmes. Free entry. Merit-based. No shortcuts.
           </p>
 
@@ -96,7 +96,7 @@ export default function ChallengeHero() {
           <div className="ch-item flex flex-wrap items-center gap-4 sm:gap-6">
             {[
               { icon: Trophy, num: '1K+', label: 'Participants', color: '#F59E0B', bg: 'rgba(245,158,11,0.15)' },
-              { icon: Zap, num: '50-75%', label: 'Scholarship', color: '#14B8A6', bg: 'rgba(20,184,166,0.15)' },
+              { icon: Zap, num: 'Upto 100%', label: 'Scholarship', color: '#14B8A6', bg: 'rgba(20,184,166,0.15)' },
               { icon: Users, num: 'Free', label: 'Entry', color: '#6366F1', bg: 'rgba(99,102,241,0.15)' },
             ].map((s, i) => {
               const Icon = s.icon

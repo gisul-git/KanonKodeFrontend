@@ -123,12 +123,12 @@ export default function CommunitySection() {
                 filter: 'drop-shadow(0 0 10px rgba(99,102,241,0.2))',
               }}
             >
-              Kanonkode Community
+              KanonKode Community
             </span>
           </h2>
 
           <p className="mx-auto mb-10 max-w-lg text-[16px] leading-relaxed" style={{ color: 'rgba(255,255,255,0.5)' }}>
-            Get early access to new programmes, Scholar Challenge announcements, and career resources — straight to your inbox.
+            Get early access to new programs, Scholar Challenge announcements, and career resources — straight to your inbox.
           </p>
 
           {!joined ? (
@@ -189,7 +189,7 @@ export default function CommunitySection() {
               ))}
             </div>
             <p className="text-[13px]" style={{ color: 'rgba(255,255,255,0.4)' }}>
-              Joined by <span className="font-semibold text-white">10,000+</span> students & professionals
+              Joined by <span className="font-semibold text-white">10,000+</span> students and professionals
             </p>
           </div>
 
