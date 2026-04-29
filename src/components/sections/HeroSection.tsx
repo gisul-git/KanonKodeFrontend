@@ -107,25 +107,25 @@ export default function HeroSection() {
 
           <div className="hero-item mt-10 flex flex-wrap items-center gap-4 md:gap-6 lg:gap-8">
             <div className="flex flex-col items-center gap-1 text-center">
-              <Users size={18} className="text-indigo-light" />
+              <Users size={18} className="text-indigo-main" />
               <span className="stat-number font-display text-[22px] font-bold text-dark-hero">2,000+</span>
               <span className="max-w-[80px] text-center text-[11px] text-text-secondary">Students Enrolled</span>
             </div>
             <div className="hidden h-8 w-px bg-[rgba(15,23,42,0.1)] md:block" />
             <div className="flex flex-col items-center gap-1 text-center">
-              <Zap size={18} className="text-teal-main" />
+              <Zap size={18} className="text-indigo-main" />
               <span className="stat-number font-display text-[22px] font-bold text-dark-hero">10+</span>
               <span className="max-w-[80px] text-center text-[11px] text-text-secondary">Live Cohorts Running</span>
             </div>
             <div className="hidden h-8 w-px bg-[rgba(15,23,42,0.1)] md:block" />
             <div className="flex flex-col items-center gap-1 text-center">
-              <Star size={18} className="text-amber-400" />
+              <Star size={18} className="text-indigo-main" />
               <span className="stat-number font-display text-[22px] font-bold text-dark-hero">1k+</span>
               <span className="max-w-[80px] text-center text-[11px] text-text-secondary">Scholar Challenge Participants</span>
             </div>
             <div className="hidden h-8 w-px bg-[rgba(15,23,42,0.1)] md:block" />
             <div className="flex flex-col items-center gap-1 text-center">
-              <Globe size={18} className="text-indigo-light" />
+              <Globe size={18} className="text-indigo-main" />
               <span className="stat-number font-display text-[22px] font-bold text-dark-hero">5</span>
               <span className="max-w-[80px] text-center text-[11px] text-text-secondary">Continents Reached</span>
             </div>
@@ -133,11 +133,15 @@ export default function HeroSection() {
         </div>
 
         <div className="hero-item mt-12 w-full">
-          <div className="relative overflow-hidden rounded-2xl px-5 py-4 md:px-8 md:py-5">
-            <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(120deg,rgba(79,70,229,0.08)_0%,rgba(20,184,166,0.04)_45%,rgba(255,255,255,0.25)_100%)]" />
-            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(79,70,229,0.10),transparent_70%)]" />
-            <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-16 bg-gradient-to-r from-[#F8FAFC] to-transparent" />
-            <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-16 bg-gradient-to-l from-[#F8FAFC] to-transparent" />
+          <div
+            className="relative overflow-hidden rounded-2xl bg-white px-5 py-4 md:px-8 md:py-5"
+            style={{
+              border: '1px solid rgba(99,102,241,0.08)',
+              boxShadow: '0 6px 24px rgba(15,23,42,0.04)',
+            }}
+          >
+            <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-16 bg-gradient-to-r from-white to-transparent" />
+            <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-16 bg-gradient-to-l from-white to-transparent" />
             <p className="relative mb-5 text-center text-[13px] tracking-[0.02em] text-text-secondary">
               Trusted by learners and leading companies worldwide
             </p>

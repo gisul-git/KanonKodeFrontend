@@ -30,6 +30,9 @@ export interface Testimonial {
   quote: string
   avatar: string
   avatarColor: string
+  image?: string
+  accentColor?: string
+  rating?: number
 }
 
 export interface FAQ {
